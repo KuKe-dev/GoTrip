@@ -12,7 +12,7 @@
 
 ---
 
-### <span style="color:#00e2ae">1.1 Clonar repositorio </span>
+### <span style="color:#00e2ae">1.1 Clonar repositorio 🛠</span>
 
 ```shell
 mkdir Go_Trip
@@ -22,7 +22,7 @@ cd Go_Trip
 git clone https://github.com/KuKe-dev/GoTrip.git
 git branch -M main
 ```
-### <span style="color:#00e2ae">1.2 Instalar dependencias</span>
+### <span style="color:#00e2ae">1.2 Instalar dependencias ⏬</span>
 
 ```shell
 cd Backend
@@ -32,7 +32,7 @@ cd ../Frontend
 npm install
 ```
 
-### <span style="color:#00e2ae">1.3 Ejecutar proyectos</span>
+### <span style="color:#00e2ae">1.3 Ejecutar proyectos ⚙</span>
 
 En el Front está instalada una dependencia llamada `concurrently`. **Esto permite ejecutar los dos proyectos al mismo tiempo desde la terminal**.
 
