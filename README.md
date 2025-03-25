@@ -151,7 +151,7 @@ public class PostController {
     }
 }
 ```
-### <span style="color:#00e2ae">2.3 Endpoints</span>
+### <span style="color:#00e2ae">2.3 Endpoints 📲</span>
 
 1. <b>Raíz:</b>  
    <code style="color:#32d6ff">http://localhost:8080/</code> - Punto de entrada principal de la API
