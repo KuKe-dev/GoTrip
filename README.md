@@ -32,7 +32,7 @@ cd ../Frontend
 npm install
 ```
 
-### <span style="color:#00e2ae">1.3 Ejecutar proyectos ⚙</span>
+### <span style="color:#00e2ae">1.3 Ejecutar proyectos ▶</span>
 
 En el Front está instalada una dependencia llamada `concurrently`. **Esto permite ejecutar los dos proyectos al mismo tiempo desde la terminal**.
 
@@ -55,7 +55,7 @@ Client is running on: http://localhost:5173
 
 ---
 
-### <span style="color:#00e2ae">2.1 Estructura General de la API</span>
+### <span style="color:#00e2ae">2.1 Estructura General de la API ⚙</span>
 
 **Back**
 
