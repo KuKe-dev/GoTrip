@@ -6,7 +6,7 @@
 
 ---
 
-## <span style="color: #00bfff">1. Replicar proyecto 🧱</span>
+## <span id="1-replicar-proyecto" style="color: #00bfff">1. Replicar proyecto 🧱</span>
 
 ### <span style="color:#00e2ae">1.1 Clonar repositorio 🛠</span>
 
@@ -47,7 +47,7 @@ Client is running on: http://localhost:5173
 ```
 
 
-## <span style="color: #00bfff">2. Back ☕</span>
+## <span id="2-back" style="color: #00bfff">2. Back ☕</span>
 
 ### <span style="color:#00e2ae">2.1 Estructura General de la API ⚙</span>
 
@@ -163,6 +163,5 @@ public class PostController {
    - <code style="color:#32d6ff">auth/login</code> - Endpoint para iniciar sesión
    - <code style="color:#32d6ff">auth/islogged</code> - Endpoint para verificar autenticación
 
-## <span style="color: #00bfff">3. Front ⚛</span>
+## <span id="3-front" style="color: #00bfff">3. Front ⚛</span>
 
----
