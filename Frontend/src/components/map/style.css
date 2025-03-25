@@ -1,0 +1,10 @@
+#map { 
+    position: absolute;
+    right: 0;
+
+    height: 100vh;
+    width: calc(100% - 150px);
+    border: none;
+    outline: none;
+    background-image: linear-gradient(#cde4eb, #aad3df);
+}
