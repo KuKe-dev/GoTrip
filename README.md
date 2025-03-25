@@ -53,8 +53,6 @@ Client is running on: http://localhost:5173
 
 ## <span style="color: #00bfff">2. Back ☕</span>
 
----
-
 ### <span style="color:#00e2ae">2.1 Estructura General de la API ⚙</span>
 
 **Back**
