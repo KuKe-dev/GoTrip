@@ -1,7 +1,5 @@
 # <span style="color: #00bfff; text-align: center; font-size: 50px">Go Trip 🌎</span>
 
----
-
 - [1. Replicar proyecto](#1-replicar-proyecto)
 - [2. Back](#2-back)
 - [3. Front](#3-front)
@@ -9,8 +7,6 @@
 ---
 
 ## <span style="color: #00bfff">1. Replicar proyecto 🧱</span>
-
----
 
 ### <span style="color:#00e2ae">1.1 Clonar repositorio 🛠</span>
 
