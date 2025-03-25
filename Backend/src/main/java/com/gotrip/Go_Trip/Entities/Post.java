@@ -3,12 +3,12 @@ package com.gotrip.Go_Trip.Entities;
 import jakarta.persistence.*;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "Posts")
 public class Post {
+
+    //- Attributes
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +45,8 @@ public class Post {
             name = "created_at"
     )
     private Calendar created_at;
+
+    //- Getters & Setters
 
     public Long getId() {
         return id;
@@ -101,4 +103,7 @@ public class Post {
     public void setCreated_at(Calendar created_at) {
         this.created_at = created_at;
     }
+
+    //TODO: Fix Calendar created_at;
+
 }

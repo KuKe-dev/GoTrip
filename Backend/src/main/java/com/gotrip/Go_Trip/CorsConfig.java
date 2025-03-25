@@ -9,11 +9,16 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")  // Solo aplica a rutas bajo /api
-                .allowedOrigins("http://localhost:5173")  // Solo permite este origen
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        registry.addMapping("/**")  // Applied to all routes
+
+                .allowedOriginPatterns("*") // Allowed all origins
+
+                /*.allowedOrigins("")*/ // To allow one specific origin
+
+                .allowedMethods("GET", "POST", "PUT", "DELETE") // Allowed this methods
+
                 .allowedHeaders("*")
-                .allowCredentials(true)  // Si usas cookies o auth
-                .maxAge(3600);
+                .allowCredentials(true) // Allowed cookies
+                .maxAge(1000*60*60*24); // Age = 24h
     }
 }

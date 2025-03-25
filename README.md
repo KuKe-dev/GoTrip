@@ -16,7 +16,9 @@
 
 ```shell
 mkdir Go_Trip
+
 cd Go_Trip
+
 git clone https://github.com/KuKe-dev/GoTrip.git
 git branch -M main
 ```

@@ -12,4 +12,8 @@ public class GoTripApplication {
 		System.out.println("Client is running on: http://localhost:5173");
 	}
 
+	//TODO: Finish api/posts Controller/CRUD (Read is finished)
+
+	//TODO: Start api/users Controller/CRUD (IMPORTANT: DO NOT INCLUDE PASSWORD NEITHER EMAIL)
+	//TODO: Start authentication (auth/login & auth/islogged)
 }
