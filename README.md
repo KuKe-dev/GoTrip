@@ -61,7 +61,7 @@ Client is running on: http://localhost:5173
 
 │<br>
 │─ ● **Entities** (Capa de Modelo): representan tablas en la base de datos.<br>│<br>
-│─ ● **Repositories** (Capa de Persistencia): Los repositorios interactúan directamente<br>│ con la base de datos. Implementan operaciones CRUD y consultas personalizadas<br>│ usando anotaciones como<br>│ `@Query`.<br>│<br>
+│─ ● **Repositories** (Capa de Persistencia): Los repositorios interactúan directamente<br>│ con la base de datos. Implementan operaciones CRUD y consultas personalizadas<br>│ usando anotaciones como `@Query`.<br>│<br>
 │─ ● **Services**: Los servicios orquestan operaciones entre múltiples componentes.<br>│ Actúan como <b>intermediarios</b> entre los controladores y la capa de persistencia,<br>│ evitando que la <b>lógica compleja</b> contamine los controladores o los repositorios.<br>│<br>
 │─ ● **Controllers**: Manejan solicitudes HTTP y respuestas, validan datos.<br>
 ▼
