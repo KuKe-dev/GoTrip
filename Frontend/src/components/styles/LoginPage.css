@@ -1,0 +1,94 @@
+/* Fondo general */
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-image: url('../images/mapa-login1.png'); /* Usa el fondo que generamos */
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: brightness(0.7);
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Login (izquierda) */
+  .login-side {
+    flex: 1;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    padding-left: 10rem;
+    animation: slideInLeft 1s ease;
+  }
+  
+  /* Bienvenida (derecha) */
+  .welcome-side {
+    flex: 1;
+    color: white;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: slideInRight 1s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .welcome-side h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #0f589c;
+  }
+  
+  .welcome-side p {
+    font-size: 1.25rem;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .welcome-box {
+    background-color: rgba(162, 198, 218, 0.9); /* como una tarjeta de cristal */
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    color: #0f589c;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animaciones */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

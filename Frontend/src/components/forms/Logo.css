@@ -1,0 +1,13 @@
+
+.logo {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    margin-top: -25px;
+  }
+  
+  .logo img {
+    width: 200px;
+    height: auto;
+  }
+  

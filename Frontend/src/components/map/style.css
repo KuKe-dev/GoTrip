@@ -1,0 +1,26 @@
+#map { 
+    position: absolute;
+    right: 0;
+
+    height: 100vh;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-image: radial-gradient(#66c0db, #cde4eb);
+
+    animation-name: startAnimMap;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes startAnimMap {
+    0% {
+        transform: translateX(300px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
