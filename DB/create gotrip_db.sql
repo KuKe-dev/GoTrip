@@ -1,14 +1,14 @@
 CREATE DATABASE gotrip_db;
-
 USE gotrip_db;
 
-DROP TABLE IF EXISTS `Friendship`;
-DROP TABLE IF EXISTS `Messages`;
-DROP TABLE IF EXISTS `Reactions`;
+# Remove tables
+DROP TABLE IF EXISTS `amistades`;
 DROP TABLE IF EXISTS `Posts`;
-DROP TABLE IF EXISTS `TypeOfReactions`;
 DROP TABLE IF EXISTS `Users`;
 
+# Creating tables #
+
+-- Users
 CREATE TABLE `Users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
@@ -25,6 +25,7 @@ CREATE TABLE `Users` (
   KEY `users_password_index` (`password`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Posts
 CREATE TABLE `Posts` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `user-id` bigint NOT NULL,
@@ -38,11 +39,14 @@ CREATE TABLE `Posts` (
   CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user-id`) REFERENCES `Users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE amistades (
+-- Friendships
+CREATE TABLE `amistades` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id1 INT NOT NULL,
     usuario_id2 INT NOT NULL
 );
 
-ALTER TABLE `Users` AUTO_INCREMENT=6;
-ALTER TABLE `Posts` AUTO_INCREMENT=6;
+# Rreset ID AUTO_INCREMENT
+ALTER TABLE `users` AUTO_INCREMENT=1;
+ALTER TABLE `posts` AUTO_INCREMENT=1;
+ALTER TABLE `amistades` AUTO_INCREMENT=1;
