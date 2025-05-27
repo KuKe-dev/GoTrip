@@ -1,5 +1,7 @@
 package com.gotrip.Go_Trip.Repositories;
 
+import java.util.List;
+
 import com.gotrip.Go_Trip.Entities.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +34,7 @@ public interface UserRepository extends JpaRepository<User, Long>{ //Esta trabja
     @Modifying
     @Query(value = "DELETE FROM gotrip_db.users WHERE id = :id", nativeQuery = true)
     void deleteUser(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM users WHERE username LIKE concat('%',:searchTerm,'%')", nativeQuery = true)
+    List<User> searchUsers(@Param("searchTerm") String searchTerm);
 }

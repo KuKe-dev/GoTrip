@@ -97,6 +97,14 @@ public class UserService {
         return response;
     }
 
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public List<User> searchUsers(String searchTerm) {
+        return userRepository.searchUsers(searchTerm);
+    }
+
     @Transactional
     public void deleteUserById(Long id) {
         userRepository.deleteUserPosts(id);

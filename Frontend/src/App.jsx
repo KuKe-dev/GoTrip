@@ -19,7 +19,12 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/privacy" element={<Privacy />} />
+        
+        {/* Ruta para perfil propio */}
         <Route path="/profile" element={<Profile />} />
+        
+        {/* Ruta para perfiles de otros usuarios */}
+        <Route path="/user/:username" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   )

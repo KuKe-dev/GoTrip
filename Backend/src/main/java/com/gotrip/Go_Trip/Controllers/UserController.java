@@ -3,7 +3,9 @@ package com.gotrip.Go_Trip.Controllers;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -154,6 +156,38 @@ public class UserController {
                 .body(resource);
     }
 
+    @GetMapping("profile/username/{username}")
+    public ResponseEntity<?> getProfileByUsername(@PathVariable String username) {
+        try {
+            Optional<User> user = userService.findByUsername(username);
+            if (user.isPresent()) {
+                // Crear un objeto con solo los datos necesarios para el perfil público
+                Map<String, Object> profileData = new HashMap<>();
+                User userData = user.get();
+                
+                profileData.put("id", userData.getId());
+                profileData.put("username", userData.getUsername());
+                profileData.put("avatar", userData.getAvatar());
+                profileData.put("bio", userData.getBio());
+                profileData.put("createdAt", userData.getCreatedAt());
+                
+                return ResponseEntity.ok(profileData);
+            } else {
+                Map<String, String> error = new HashMap<>();
+                error.put("error", "Usuario no encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            }
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Error interno del servidor");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
+    }
+
+    @GetMapping("/users")
+    public List<User> searchUser(@RequestParam(name = "searchTerm", required = false) String searchTerm) {
+        return userService.searchUsers(searchTerm);
+    }
 
     @DeleteMapping("/auth/delete-account")
 public ResponseEntity<?> deleteAccount(@RequestHeader("Authorization") String authHeader) {
