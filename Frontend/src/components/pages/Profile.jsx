@@ -4,6 +4,7 @@ import { getCookie, checkIsLogged } from "../../scripts/logged.js";
 import Sidebar from "../sidebar/Sidebar.jsx";
 import "../sidebar/Sidebar.css";
 import "./Profile.css";
+import FriendButton from "../friendButton/FriendButton.jsx";
 
 export default function Profile() {
     const { username } = useParams(); // Obtener username de la URL
@@ -150,6 +151,7 @@ export default function Profile() {
                                     {profile.username}
                                     {isOwnProfile && <span className="own-profile-indicator"> (Tu perfil)</span>}
                                 </h1>
+                                
                                 <img 
                                     className="profile-avatar" 
                                     src={`http://localhost:8080/api/profile/img/${profile.avatar}`} 
@@ -160,7 +162,9 @@ export default function Profile() {
                                         e.target.src = '/default-avatar.png';
                                     }}
                                 />
+                                
                             </div>
+                            {!isOwnProfile && <FriendButton targetUserId={profile.id} targetUsername={profile.username} />}
                             <div className="profile-info">
                                 <div className="profile-field">
                                     <span className="profile-label">Biografía</span>

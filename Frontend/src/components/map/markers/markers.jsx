@@ -22,7 +22,7 @@ export default function Markers(props) {
         setPosts(data);
       });
 
-    fetch(`http://localhost:8080/api/friends-clap-clap-clap-clap/${userId}`)
+    fetch(`http://localhost:8080/api/followings/${userId}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);

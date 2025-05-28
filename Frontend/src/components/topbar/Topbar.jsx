@@ -1,32 +1,20 @@
 // src/components/topbar/Topbar.jsx
 import React, { useState, useEffect } from "react";
-import { FaComments, FaBell, FaUser, FaSearch } from 'react-icons/fa';
+import { FaUsers, FaBell, FaUser, FaSearch } from 'react-icons/fa';
 import './Topbar.css';
 import debounce from 'lodash.debounce';// Para evitar llamadas excesivas a la API
 import axios from 'axios';
-import { getCookie } from "../../scripts/logged";
+import { getCookie, checkIsLogged } from "../../scripts/logged";
 
 
 const Topbar = () => {
-
+  const [userId, setUserId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // Opción 1: Filtrado local (sin API)
-  /* useEffect(() => {
-    if (searchTerm === '') {
-      setFilteredUsers([]);
-    } else {
-      const results = mockUsers.filter(user =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredUsers(results);
-    }
-  }, [searchTerm]); */
-
+  const [friends, setFriends] = useState([]);
+  const [friendsProfile, setFriendsProfile] = useState(null);
   // Función para buscar usuarios en la API de goTrip
   const fetchUsers = async (term) => {
   if (!term.trim()) {
@@ -58,6 +46,50 @@ const Topbar = () => {
     fetchUsers(searchTerm);
     return () => debouncedFetchUsers.cancel(); // Limpia el debounce al desmontar
   }, [searchTerm]);
+
+
+
+
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const token = getCookie('isLogged');
+        const loginResponse = await checkIsLogged(token);
+        const loginData = await loginResponse.json();
+        setUserId(loginData.id);
+      } catch (error) {
+        console.error('Error al obtener el ID del usuario:', error);
+      }
+    };
+    fetchUserId();
+  }, []);
+
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/followings/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setFriends(data);
+      });
+  }, [userId]);
+
+  useEffect(() => {
+    if (friends && friends.length > 0) {
+      Promise.all(
+        friends.map(friendId =>
+          fetch(`http://localhost:8080/api/profile/${friendId}`)
+            .then(res => res.json()) 
+        )
+      ).then(profilesArrays => {
+        const allProfiles = profilesArrays.flat();
+        setFriendsProfile(allProfiles);
+        console.log(allProfiles);
+      });
+    }
+  }, [friends]);
+
 
 
   return (
@@ -95,7 +127,27 @@ const Topbar = () => {
       <div className="topbar-icons">
 
         <button className="icon-btn"><FaBell /></button>
+        <details className="icon-btn">
+          <summary className="btn-details"><FaUsers /></summary>
+          
+          <section className="user-list">
+            <h3>Amigos</h3>
+            <ul>
+              {friendsProfile && friendsProfile.map((user) => (
+                
+
+                <a href={`/user/${user.username}`} key={user.id} style={{textDecoration: 'none'}}>
+                <li key={user.id}>
+                  <img src={`http://localhost:8080/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
+                  <span><strong>{user.username}</strong></span>
+                </li>
+                </a>
+              ))}
+            </ul>
+          </section>
+        </details>
         <a href="/profile"><button className="user-btn"><FaUser /></button></a>
+        
       </div>
     </div>
   );

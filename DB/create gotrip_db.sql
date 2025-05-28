@@ -39,14 +39,15 @@ CREATE TABLE `Posts` (
   CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user-id`) REFERENCES `Users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Friendships
-CREATE TABLE `amistades` (
+-- Follows
+CREATE TABLE `Follows` (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id1 INT NOT NULL,
-    usuario_id2 INT NOT NULL
+    follower_id INT NOT NULL,
+    following_id INT NOT NULL
 );
 
 # Rreset ID AUTO_INCREMENT
 ALTER TABLE `users` AUTO_INCREMENT=1;
 ALTER TABLE `posts` AUTO_INCREMENT=1;
 ALTER TABLE `amistades` AUTO_INCREMENT=1;
+ALTER TABLE `follows` AUTO_INCREMENT=1;

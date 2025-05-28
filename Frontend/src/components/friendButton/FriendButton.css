@@ -1,0 +1,147 @@
+.follow-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+padding: 10px 20px;
+font-size: 14px;
+font-weight: 600;
+border: 2px solid;
+border-radius: 25px;
+cursor: pointer;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+min-width: 120px;
+height: 42px;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Estado: No siguiendo */
+.follow-button.not-following {
+background: #1da1f2;
+color: white;
+border-color: #1da1f2;
+}
+
+.follow-button.not-following:hover {
+background: #1991db;
+border-color: #1991db;
+transform: translateY(-1px);
+box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
+}
+
+.follow-button.not-following:active {
+transform: translateY(0);
+box-shadow: 0 2px 4px rgba(29, 161, 242, 0.3);
+}
+
+/* Estado: Siguiendo */
+.follow-button.following {
+background: white;
+color: #1da1f2;
+border-color: #1da1f2;
+}
+
+.follow-button.following:hover {
+background: #fee;
+color: #dc2626;
+border-color: #dc2626;
+}
+
+.follow-button.following:hover .follow-text {
+display: none;
+}
+
+.follow-button.following:hover .unfollow-text {
+display: inline;
+}
+
+.follow-button.following:hover .follow-icon::before {
+content: "×";
+}
+
+/* Textos */
+.unfollow-text {
+display: none;
+}
+
+.follow-text {
+display: inline;
+}
+
+/* Iconos */
+.follow-icon {
+font-size: 16px;
+font-weight: bold;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 16px;
+height: 16px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+width: 16px;
+height: 16px;
+border: 2px solid transparent;
+border-top: 2px solid currentColor;
+border-radius: 50%;
+animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+/* Estado deshabilitado */
+.follow-button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+transform: none !important;
+box-shadow: none !important;
+}
+
+/* Variantes de tamaño */
+.follow-button.small {
+padding: 6px 12px;
+font-size: 12px;
+min-width: 90px;
+height: 32px;
+}
+
+.follow-button.large {
+padding: 14px 28px;
+font-size: 16px;
+min-width: 140px;
+height: 50px;
+}
+
+/* Error message */
+.follow-error {
+color: #dc2626;
+font-size: 12px;
+padding: 4px 8px;
+background: #fee;
+border-radius: 4px;
+border: 1px solid #fecaca;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.follow-button {
+min-width: 100px;
+padding: 8px 16px;
+font-size: 13px;
+height: 38px;
+}
+
+.follow-button.small {
+min-width: 80px;
+padding: 5px 10px;
+font-size: 11px;
+height: 28px;
+}
+}
