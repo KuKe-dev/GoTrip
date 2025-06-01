@@ -1,82 +1,149 @@
+/* Sidebar.css */
 .sidebar {
   width: 240px;
   height: 100vh;
-  background-color: #3788ca; /* #0c2d48  #114f75  #2d7fc2  #439feb azul oscuro */
-  padding: 2rem 1rem;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, #4A90E2 0%, #357ABD 100%);
+  position: fixed;
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  gap: 2rem;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
+  padding: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.logo {
+.logo-home {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  padding: 20px;
-  margin-bottom: 20px;
+  width: 100%;
+  padding: 30px 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.logo {
-  width: 120px;       
-  margin-top: 50px;     
-  margin-bottom: 26px;  
+.logo-home:hover {
+  transform: scale(1.05);
 }
 
-
-.logo-container {
-  padding-top: 20px;
-  text-align: center; 
+.logo-home img {
+  max-width: 60%;
+  height: auto;
+  filter: brightness(0) invert(1); /* Makes logo white */
 }
-
 
 .menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   list-style: none;
   padding: 0;
-  width: 100%;
-  margin-top: 80px;
+  margin: 20px 0 0 0;
+  flex-grow: 1;
+}
+
+.menu li {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .menu li {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.45rem;
-  background-color: #71b1d8; /*#085585  #63b9ee*/
-  border-radius: 12px;
-  cursor: pointer;
+  padding: 18px 25px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  cursor: pointer;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 8px 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu li:hover {
-  background-color: #035d8d;
-  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.menu li:active {
+  transform: translateX(3px) scale(0.98);
 }
 
 .icon {
-  font-size: 1rem;
-}
-
-.menu-link {
+  margin-right: 15px;
+  font-size: 18px;
   color: white;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  transition: transform 0.2s ease;
 }
 
-.menu-link:hover {
-  text-decoration: underline;
+.menu li:hover .icon {
+  transform: scale(1.1);
+}
+
+/* Special styling for logout button */
+.menu li:last-child {
+  margin-top: auto;
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu li:last-child:hover {
+  background: rgba(220, 53, 69, 0.8);
+  border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    overflow: hidden;
+  }
+  
+  .logo {
+    padding: 20px 10px;
+  }
+  
+  .logo img {
+    max-width: 40px;
+  }
+  
+  .menu li {
+    justify-content: center;
+    padding: 15px 10px;
+    margin: 5px;
+    font-size: 0;
+  }
+  
+  .icon {
+    margin-right: 0;
+    font-size: 20px;
+  }
+  
+  .menu-link span,
+  .menu li span {
+    display: none;
+  }
+}
+
+
+
+/* Glassmorphism effect enhancement */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
 }

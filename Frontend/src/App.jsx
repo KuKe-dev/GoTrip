@@ -1,30 +1,24 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './components/pages/Home.jsx'
-import CreatePost from './components/pages/CreatePost.jsx'
-import RegisterPage from './components/pages/RegisterPage.jsx'
-import LoginPage from './components/pages/LoginPage.jsx';
-import Privacy from "./components/pages/Privacy.jsx"; 
-import Profile from "./components/pages/Profile.jsx";
+import Home from './pages/Home.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import Profile from './pages/Profile.jsx';
+import CreatePost from './pages/CreatePost.jsx';
+import Config from './pages/Config.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/h" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/createPost" element={<CreatePost />} />
-        <Route path="/Register" element={<RegisterPage />} />
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/Login" element={<LoginPage />} />
-        <Route path="/privacy" element={<Privacy />} />
-        
-        {/* Ruta para perfil propio */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<Profile />} />
-        
-        {/* Ruta para perfiles de otros usuarios */}
         <Route path="/user/:username" element={<Profile />} />
+        <Route path="/createPost" element={<CreatePost />} />
+        <Route path="/settings" element={<Config />} />
       </Routes>
     </BrowserRouter>
   )

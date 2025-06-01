@@ -125,8 +125,6 @@ const Topbar = () => {
 
       {/* ICONOS A LA DERECHA */}
       <div className="topbar-icons">
-
-        <button className="icon-btn"><FaBell /></button>
         <details className="icon-btn">
           <summary className="btn-details"><FaUsers /></summary>
           

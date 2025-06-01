@@ -27,5 +27,9 @@ INSERT INTO `Posts` (`user-id`, `img`, `description`, `latitude`, `longitude`) V
 
 -- Friendships
 INSERT INTO `amistades` (`usuario_id1`, `usuario_id2`) VALUES
-(2, 1),  -- Juan is friend of Kuke
-(2, 3);  -- Juan is friend of Sofi
+(1, 2),  -- Kuke follows Juan
+(1, 3),  -- Kuke follows Sofi
+(2, 1),  -- Juan follows Kuke
+(2, 3),  -- Juan follows Sofi
+(3, 1),  -- Sofi follows Kuke
+(3, 2);  -- Sofi follows Juan

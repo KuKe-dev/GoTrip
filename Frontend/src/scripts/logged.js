@@ -3,6 +3,10 @@ export function getCookie(name) {
     return cookie ? cookie.split("=")[1].trim() : "false";
 }
 
+export function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
 export async function checkIsLogged(token) {
     return await fetch('http://localhost:8080/api/auth/isLogged', {
         method: 'POST',

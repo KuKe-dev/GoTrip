@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo-gotrip.png'; // pon aquí tu imagen/logo
+import logo from '../../assets/logo-gotrip.png'; // pon aquí tu imagen/logo
 import './Logo.css';
 
 const Logo = () => (

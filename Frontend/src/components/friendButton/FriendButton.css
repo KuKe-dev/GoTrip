@@ -100,8 +100,8 @@ animation: spin 1s linear infinite;
 .follow-button:disabled {
 opacity: 0.6;
 cursor: not-allowed;
-transform: none !important;
-box-shadow: none !important;
+transform: none ;
+box-shadow: none ;
 }
 
 /* Variantes de tamaño */
