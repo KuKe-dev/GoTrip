@@ -1,6 +1,9 @@
 package com.gotrip.Go_Trip.Controllers;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,17 +51,20 @@ public class PostController {
     }
 
     @GetMapping(value = "/img/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
-        Resource resource = new ClassPathResource("static/Img/Posts/" + imageName);
-
-        if (!resource.exists()) {
+    public ResponseEntity<byte[]> getImage(@PathVariable String imageName) throws IOException {
+        
+        Path imagePath = Paths.get("src/main/resources/static/Img/Posts/" + imageName);
+        
+        if (!Files.exists(imagePath)) {
             return ResponseEntity.notFound().build();
         }
-
+        
+        byte[] imageBytes = Files.readAllBytes(imagePath);
+        
         return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG) // Ajusta según el tipo de imagen
-                .body(resource);
-    }
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(imageBytes);
+}
 
     @PostMapping()
     public void addPost( @RequestParam("userId") Long userId,
@@ -74,6 +80,11 @@ public class PostController {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @GetMapping("/randoms")
+    public List<Post> getRandomPosts() {
+        return postService.getRandomPosts();
     }
 
 

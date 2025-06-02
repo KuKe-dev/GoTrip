@@ -61,15 +61,18 @@ public class PostService {
     }
 
     private String saveImage(MultipartFile img, Long userId) throws IOException {
-        String imgName = userId + "" + System.currentTimeMillis() + ".jpg"; // Genera un nombre único para la imagen
-        String path = "src/main/resources/static/Img/Posts/" + imgName; // Ruta donde se guardará la imagen
-
-        try (FileOutputStream fos = new FileOutputStream(path)) {
-            fos.write(img.getBytes());
-        }
-
-        return imgName;
+    String imgName = userId + "" + System.currentTimeMillis() + ".jpg";
+    String path = "src/main/resources/static/Img/Posts/" + imgName;
+    
+    // Crear directorio si no existe
+    new File("src/main/resources/static/Img/Posts/").mkdirs();
+    
+    try (FileOutputStream fos = new FileOutputStream(path)) {
+        fos.write(img.getBytes());
     }
+    
+    return imgName;
+}
 
 
     @Transactional
@@ -84,10 +87,15 @@ public void deletePostsById(Long id) {
     postRepository.deleteById(id); 
 } 
 
+    public List<Post> getRandomPosts() {
+        return postRepository.getRandomPosts();
+    }
     //TODO: addPost()
     //TODO: updatePost(id)
     //TODO: deletePost(id)
 
     //TODO: getImgName(id)
+
+    
 
 }

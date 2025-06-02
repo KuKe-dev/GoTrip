@@ -29,7 +29,7 @@ const RegisterForm = () => {
     formData.append('bio', document.getElementById('bio').value);
 
     try {
-      await axios.post('http://localhost:8080/api/auth/register', formData);
+      await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/auth/register', formData);
       
       // Mostrar alerta bonita con setTimeout para redirección
       const messageDiv = document.createElement('div');

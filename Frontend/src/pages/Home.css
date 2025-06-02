@@ -1,0 +1,113 @@
+.not-logged-warning {
+    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #dc3545;
+    font-size: 4rem;
+    font-weight: 600;
+    margin: 2rem auto;
+    padding: 5rem;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+}
+
+.not-logged-warning button {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.not-logged-warning button:hover {
+    background-color: #c82333;
+}
+
+.not-logged-warning button:active {
+    transform: translateY(1px);
+}
+
+/* Estilo para bienvenida en Home */
+.not-logged-welcome {
+    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #495057;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    min-width: 500px;
+}
+
+.not-logged-welcome .buttons {
+    position: relative;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.not-logged-welcome button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.not-logged-welcome button:first-child {
+    background-color: #28a745;
+    color: white;
+}
+
+.not-logged-welcome button:first-child:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.not-logged-welcome button:nth-child(2) {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.not-logged-welcome button:nth-child(2):hover {
+    background-color: #138496;
+    transform: translateY(-2px);
+}
+
+.not-logged-welcome button:last-child {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.not-logged-welcome button:last-child:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}

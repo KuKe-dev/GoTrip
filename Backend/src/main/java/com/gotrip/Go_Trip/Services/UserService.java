@@ -1,5 +1,6 @@
 package com.gotrip.Go_Trip.Services;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -53,14 +54,24 @@ public class UserService {
 
         return userRepository.save(user);
     }
+    
     private String saveAvatar(MultipartFile avatar, String username) throws IOException {
-        String avatarName = username + "" + System.currentTimeMillis() + ".jpg"; // Genera un nombre único para la imagen
-        String path = "src/main/resources/static/Img/Avatars/" + avatarName; // Ruta donde se guardará la imagen
-
-        try (FileOutputStream fos = new FileOutputStream(path)) {
+        String avatarName = username + "_" + System.currentTimeMillis() + ".jpg";
+        String directoryPath = "src/main/resources/static/Img/Avatars/";
+        
+        // Crear directorio si no existe
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        
+        // Ruta completa del archivo
+        String filePath = directoryPath + avatarName;
+        
+        try (FileOutputStream fos = new FileOutputStream(filePath)) {
             fos.write(avatar.getBytes());
         }
-
+        
         return avatarName;
     }
 

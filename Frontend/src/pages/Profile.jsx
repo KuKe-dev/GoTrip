@@ -68,15 +68,13 @@ export default function Profile() {
                 const loginResponse = await checkIsLogged(token);
                 const loginData = await loginResponse.json();
                 
-                if (loginData.res === "false") {
-                    window.location.href = "/";
-                    return;
-                }
+
+                setIsLogged(loginData.res);
+                loginData.id ? setCurrentUserId(loginData.id) : setCurrentUserId(null);
                 
-                setCurrentUserId(loginData.id);
-                setIsLogged(true);
                 
                 // Obtener el username del usuario actual
+                if (!loginData.id) return;
                 const currentUserResponse = await fetch(`http://localhost:8080/api/profile/${loginData.id}`);
                 if (!currentUserResponse.ok) throw new Error('Failed to fetch current user data');
                 const currentUserData = await currentUserResponse.json();
@@ -149,17 +147,6 @@ export default function Profile() {
         }
     };
 
-    if (!isLogged) {
-        return (
-            <>
-                <Sidebar/>
-                <main className="content-w-navbar">
-                    <h1 className="loading">Loading...</h1>
-                </main>
-            </>
-        );
-    }
-
     if (loading) {
         return (
             <>
@@ -186,6 +173,7 @@ export default function Profile() {
         <>
             <Sidebar/>
             <main className="content-w-navbar">
+                {isLogged === "false" ? <dialog open className="not-logged-warning">Porfavor inicia sesion</dialog> : null}
                 {profile && (
                     <>
                         <div className="profile-container">

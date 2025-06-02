@@ -1,6 +1,6 @@
 // src/components/topbar/Topbar.jsx
 import React, { useState, useEffect } from "react";
-import { FaUsers, FaBell, FaUser, FaSearch } from 'react-icons/fa';
+import { FaUsers, FaRedo, FaUser, FaSearch } from 'react-icons/fa';
 import './Topbar.css';
 import debounce from 'lodash.debounce';// Para evitar llamadas excesivas a la API
 import axios from 'axios';

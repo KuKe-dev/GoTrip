@@ -7,11 +7,16 @@
     backdrop-filter: brightness(0.7);
     font-family: 'Segoe UI', sans-serif;
   }
-  
-  .register-logo {
+
+  .register-logo{
     position: absolute;
     top: 30px;
     left: 30px;
+    transition: all 0.3s ease;
+  }
+  .register-logo:hover{
+    cursor: pointer;
+    scale: 1.1;
   }
   
   .register-side {

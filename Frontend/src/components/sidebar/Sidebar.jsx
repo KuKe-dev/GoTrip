@@ -1,17 +1,36 @@
+/* eslint-disable react/prop-types */
 // src/components/sidebar/Sidebar.jsx
-import { FaUser, FaPlusCircle, FaMapMarkedAlt, FaCog, FaSignOutAlt, FaQuestion } from "react-icons/fa";
+import { FaUser, FaPlusCircle, FaMapMarkedAlt, FaSignOutAlt, FaQuestion, FaSignInAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { deleteCookie } from "../../scripts/logged";
 import "./Sidebar.css";
 import logo from "../../assets/logo-gotrip.png";
+import { useEffect, useState } from "react";
+import { getCookie, checkIsLogged } from "../../scripts/logged";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+
+  const [isLogged, setIsLogged] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLogout = () => {
     deleteCookie("isLogged"); // Vacía datos del usuario
     navigate("/login");   // Redirige al login
   };
+
+  useEffect(() => {
+    const token = getCookie('isLogged');
+    checkIsLogged(token).then(res => res.json())
+        .then(login => {
+                setIsLogged(login);setIsLoading(false);
+        })
+  }, [])
+  console.log(isLogged);
+
+  if (isLoading) {
+    return <div></div>;
+  }
 
   return (
     <div className="sidebar">
@@ -43,15 +62,20 @@ const Sidebar = () => {
 
         </li>    
 
-        <li onClick={() => navigate("/settings")}>
+        {/* <li onClick={() => navigate("/settings")}>
           <FaCog className="icon" /> 
           <span>Configuración</span>
-        </li>
+        </li> */}
 
-        <li onClick={handleLogout} className="menu-link">
+        {isLogged.res === "true" ? 
+        <li onClick={handleLogout} className="menu-link logout">
           <FaSignOutAlt className="icon" /> 
           <span>Cerrar sesión</span>
-        </li>
+        </li> : 
+        <li onClick={handleLogout} className="menu-link signin">
+          <FaSignInAlt className="icon" /> 
+          <span>Iniciar sesión</span>
+        </li>}
       </ul>
     </div>
   );

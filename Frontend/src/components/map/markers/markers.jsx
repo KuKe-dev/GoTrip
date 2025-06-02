@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import 'leaflet/dist/leaflet.css'
 import { Marker, Popup } from 'react-leaflet'
 import { Icon } from 'leaflet';
@@ -9,20 +10,25 @@ export default function Markers(props) {
   const userId = props.user.id;
   const userName = props.user.username;
   const avatar = props.user.avatar;
+  const randomPosts = props.randomPosts || [];
   
   const [posts, setPosts] = useState([]);
   const [friends, setFriends] = useState([]);
   const [friendsPosts, setFriendsPosts] = useState([]);
   const [friendsProfile, setFriendsProfile] = useState([]);
+  const [randomPostsProfile, setRandomPostsProfile] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingPost, setDeletingPost] = useState(null);
-
 
   const navigate = useNavigate();
 
   // Fetch user posts and friends
   useEffect(() => {
     const fetchUserData = async () => {
+      if (userId === null || userId === undefined) {
+        setLoading(false);
+        return;
+      }
       try {
         setLoading(true);
         const [postsRes, friendsRes] = await Promise.all([
@@ -44,9 +50,7 @@ export default function Markers(props) {
       }
     };
 
-    if (userId) {
-      fetchUserData();
-    }
+    fetchUserData();
   }, [userId]);
 
   // Fetch friends posts and profiles
@@ -86,6 +90,37 @@ export default function Markers(props) {
 
     fetchFriendsData();
   }, [friends]);
+
+  // Fetch profiles for random posts
+  useEffect(() => {
+    const fetchProfiles = async () => {
+      try {
+        // Get all unique userIds from posts
+        const uniqueUserIds = [...new Set(randomPosts.map(post => post.userId))];
+        
+        // Fetch profile for each unique userId
+        const profilePromises = uniqueUserIds.map(async userId => {
+          const response = await fetch(`http://localhost:8080/api/profile/${userId}`);
+          if (!response.ok) {
+            throw new Error(`Error fetching profile for user ${userId}`);
+          }
+          return await response.json();
+        });
+        
+        // Wait for all requests to complete
+        const profiles = await Promise.all(profilePromises);
+        
+        setRandomPostsProfile(profiles);
+      } catch (error) {
+        console.error("Error fetching profiles:", error);
+        setRandomPostsProfile([]);
+      }
+    };
+
+    if (randomPosts.length > 0) {
+      fetchProfiles();
+    }
+  }, [randomPosts]);
 
   // Custom icons
   const customIcon = new Icon({
@@ -134,6 +169,11 @@ export default function Markers(props) {
     return friendsProfile?.find(profile => parseInt(profile.id) === parseInt(userId));
   }, [friendsProfile]);
 
+  // Helper function to get random post profile by userId
+  const getRandomPostProfile = useCallback((userId) => {
+    return randomPostsProfile?.find(profile => parseInt(profile.id) === parseInt(userId));
+  }, [randomPostsProfile]);
+
   // Format date
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -146,7 +186,14 @@ export default function Markers(props) {
     });
   };
 
-  if (loading) {
+  function getNewPosts() {
+    
+  }
+
+  // Check if we're on the home page
+  const isHomePage = window.location.pathname === '/';
+
+  if (loading && randomPosts.length === 0) {
     return null; // Or a loading spinner if needed
   }
 
@@ -214,8 +261,8 @@ export default function Markers(props) {
         </Marker>
       ))}
 
-      {/* Friends' posts */}
-      {friendsPosts.map(post => {
+      {/* Friends' posts - only show on home page */}
+      {isHomePage && friendsPosts.map(post => {
         const friendProfile = getFriendProfile(post.userId);
         
         return (
@@ -277,6 +324,66 @@ export default function Markers(props) {
                     Me gusta
                   </button>
                 </div>
+              </div>
+            </Popup>
+          </Marker>
+        );
+      })}
+
+      {/* Random posts */}
+      {randomPosts.map(post => {
+        const profile = getRandomPostProfile(post.userId);
+        
+        if (!profile) return null;
+        
+        return (
+          <Marker key={`random-${post.id}`} position={[post.latitude, post.longitude]} icon={customIconFriends}>
+            <Popup className='custom-popup random-post' closeButton={true}>
+              <div className="popup-content">
+                <div className="popup-header" onClick={() => navigate(`/user/${profile.username}`)}>
+                  <div className="user-info">
+                    {profile.avatar && (
+                      <img 
+                        className='user-avatar' 
+                        src={`http://localhost:8080/api/profile/img/${profile.avatar}`} 
+                        alt={`Perfil de ${profile.username}`}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    )}
+                    <div className="user-details">
+                      <h3 className="username">
+                        @{profile.username || 'Usuario'}
+                      </h3>
+                    </div>
+                  </div>
+                  {post.createdAt && (
+                    <span className="post-date">{formatDate(post.createdAt)}</span>
+                  )}
+                </div>
+
+                {post.img && (
+                  <div className="image-container">
+                    <img 
+                      className='post-image' 
+                      src={`http://localhost:8080/api/posts/img/${post.img}`} 
+                      alt="Post aleatorio"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.parentElement.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
+                {post.description && (
+                  <div className="post-description">
+                    <p>{post.description}</p>
+                  </div>
+                )}
+
+                
               </div>
             </Popup>
           </Marker>

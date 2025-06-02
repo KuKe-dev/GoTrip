@@ -16,22 +16,20 @@ export default function Home() {
         const token = getCookie('isLogged');
         checkIsLogged(token).then(res => res.json())
             .then(login => {
-                if (login.res === "false") {
-                    window.location.href = "/login";
-                }
-                else {
-                  console.log(login)
                     setUser(login);setIsLogged(login.res);setIsLoading(false);
-                }
+
             })
 
     } , [])
 
   return (
     <div className="home-container">
-        <Sidebar />
+        <Sidebar/>
         <Topbar />
         <main className="main-content content-w-navbar">
+          {isLogged === "false" ? 
+          <dialog open className="not-logged-welcome">Bienvenido a goTrip! Para crear tu diario de aventuras, debes iniciar sesión. Tambien puedes explorar el mapa <nav className="not-logged-welcome buttons"><button onClick={() => window.location.href = "/login"}>Iniciar sesión</button><button onClick={() => window.location.href = "/explore"}>Explorar &quot;trips&quot; publicos</button><button onClick={() => document.getElementsByClassName("not-logged-welcome")[0].close()}>Cerrar advertencia</button></nav></dialog>
+          : null}
             {isLoading ? (
                         <div>Cargando...</div> 
                     ) : (

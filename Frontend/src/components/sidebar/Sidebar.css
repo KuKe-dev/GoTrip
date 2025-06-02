@@ -89,16 +89,21 @@
 }
 
 /* Special styling for logout button */
-.menu li:last-child {
+.menu li.logout, .menu li.signin {
   margin-top: auto;
   margin-bottom: 30px;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.menu li:last-child:hover {
+.menu li.logout:hover {
   background: rgba(220, 53, 69, 0.8);
   border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+.menu li.signin:hover {
+  background: rgba(74, 226, 163, 0.8);
+  border: 1px solid rgba(74, 144, 226, 0.5);
 }
 
 /* Responsive design */

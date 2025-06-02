@@ -89,7 +89,7 @@
 
 .privacy-option select:hover {
   border-color: #cbd5e0;
-  background: #f7fafc;
+  /* background: #f7fafc; */
 }
 
 .save-btn {

@@ -7,7 +7,7 @@ const RegisterPage = () => {
   return (
     <div className="register-container">
       <div className="register-side">
-        <div className="register-logo">
+        <div className="register-logo" onClick={() => window.location.href = "/" }>
         <Logo />
         </div>
         <RegisterForm />

@@ -24,10 +24,7 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     @Query(value = "SELECT img FROM posts WHERE id = :id", nativeQuery = true)
     String getImgName(@Param("id") Long id); 
 
-
-    //TODO: addPost()
-    //TODO: updatePost(id)
-    //TODO: deletePost(id)
-    //TODO: getImgName(id)
+    @Query(value = "SELECT * FROM posts ORDER BY RAND() LIMIT 5", nativeQuery = true)
+    List<Post> getRandomPosts();
 
 }

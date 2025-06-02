@@ -22,7 +22,7 @@ const LoginPage = () => {
     <div className="login-container">
       {/* Lado izquierdo - Login */}
       <div className="login-side">
-        <div className="login-logo">
+        <div className="login-logo" onClick={() => window.location.href = "/" }>
         <Logo />
         </div>
         <LoginForm />

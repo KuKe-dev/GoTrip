@@ -1,6 +1,9 @@
 package com.gotrip.Go_Trip.Controllers;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -144,17 +147,20 @@ public class UserController {
     }
 
     @GetMapping(value = "/profile/img/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
-        Resource resource = new ClassPathResource("static/Img/Avatars/" + imageName);
-
-        if (!resource.exists()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG) // Ajusta según el tipo de imagen
-                .body(resource);
+    public ResponseEntity<byte[]> getAvatar(@PathVariable String imageName) throws IOException {
+    // Ruta relativa al directorio del proyecto
+    Path imagePath = Paths.get("src/main/resources/static/Img/Avatars/" + imageName);
+    
+    if (!Files.exists(imagePath)) {
+        return ResponseEntity.notFound().build();
     }
+    
+    byte[] imageBytes = Files.readAllBytes(imagePath);
+    
+    return ResponseEntity.ok()
+            .contentType(MediaType.IMAGE_JPEG)
+            .body(imageBytes);
+}
 
     @GetMapping("profile/username/{username}")
     public ResponseEntity<?> getProfileByUsername(@PathVariable String username) {

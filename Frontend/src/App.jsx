@@ -6,7 +6,10 @@ import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import Profile from './pages/Profile.jsx';
 import CreatePost from './pages/CreatePost.jsx';
-import Config from './pages/Config.jsx';
+/* import Config from './pages/Config.jsx'; */
+import Explore from './pages/Explore.jsx';
+
+// import.meta.env.VITE_BACKEND_URL
 
 function App() {
   return (
@@ -18,7 +21,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/user/:username" element={<Profile />} />
         <Route path="/createPost" element={<CreatePost />} />
-        <Route path="/settings" element={<Config />} />
+        <Route path="/explore" element={<Explore />} />
+        {/* <Route path="/settings" element={<Config />} /> */}
       </Routes>
     </BrowserRouter>
   )

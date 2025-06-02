@@ -253,23 +253,13 @@
 
 /* Estilos para marcadores personalizados */
 .custom-marker-own {
-  filter: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.4)) ;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.547)) ;
   transition: all 0.3s ease ;
-}
-
-.custom-marker-own:hover {
-  filter: drop-shadow(0 8px 16px rgba(59, 130, 246, 0.6)) ;
-  transform: scale(1.15) translateY(-2px) ;
 }
 
 .custom-marker-friend {
-  filter: drop-shadow(0 6px 12px rgba(16, 185, 129, 0.4)) ;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) ;
   transition: all 0.3s ease ;
-}
-
-.custom-marker-friend:hover {
-  filter: drop-shadow(0 8px 16px rgba(16, 185, 129, 0.6)) ;
-  transform: scale(1.15) translateY(-2px);
 }
 
 /* Animaciones */
