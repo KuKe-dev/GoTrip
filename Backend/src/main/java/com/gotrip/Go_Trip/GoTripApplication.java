@@ -14,7 +14,7 @@ public class GoTripApplication {
 		
 		SpringApplication.run(GoTripApplication.class, args);
 		System.out.println("Server is running on: http://localhost:8080");
-		System.out.println("Client is running on: " + System.getenv("CLIENT_URL"));
+		System.out.println("Client is running on: http://localhost:5173" );
 	}
 
 	
