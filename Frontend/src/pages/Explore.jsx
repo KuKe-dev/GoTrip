@@ -18,7 +18,7 @@ export default function Explore() {
                 setLoading(true);
                 setError(null);
                 
-                const response = await fetch("http://localhost:8080/api/posts/randoms", {
+                const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/posts/randoms", {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',

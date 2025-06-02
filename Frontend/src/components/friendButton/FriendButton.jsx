@@ -30,7 +30,7 @@ export default function FriendButton({ targetUserId, targetUsername, className =
                 }
                 
                 // Verificar si ya sigue al usuario
-                const followResponse = await fetch(`http://localhost:8080/api/isFollowing?followerId=${loginData.id}&followingId=${targetUserId}`);
+                const followResponse = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/isFollowing?followerId=${loginData.id}&followingId=${targetUserId}`);
                 console.log(followResponse);
                 if (followResponse.ok) {
                     const followData = await followResponse.json();
@@ -61,8 +61,8 @@ export default function FriendButton({ targetUserId, targetUsername, className =
         
         try {
             const endpoint = isFollowing 
-                ? `http://localhost:8080/api/unfollow?followerId=${currentUserId}&followingId=${targetUserId}`
-                : `http://localhost:8080/api/follow?followerId=${currentUserId}&followingId=${targetUserId}`;
+                ? import.meta.env.VITE_BACKEND_URL + `/api/unfollow?followerId=${currentUserId}&followingId=${targetUserId}`
+                : import.meta.env.VITE_BACKEND_URL + `/api/follow?followerId=${currentUserId}&followingId=${targetUserId}`;
             
             const response = await fetch(endpoint, {
                 method: isFollowing ? 'DELETE' : 'POST',

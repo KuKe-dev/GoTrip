@@ -26,7 +26,7 @@ const Topbar = () => {
   setError(null);
 
   try {
-    const response = await fetch(`http://localhost:8080/api/users?searchTerm=${term}`);
+    const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/users?searchTerm=${term}`);
     if (!response.ok) throw new Error('Error en la respuesta del servidor');
     const data = await response.json(); // Parsear la respuesta JSON
     setUsers(data);
@@ -67,7 +67,7 @@ const Topbar = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/followings/${userId}`)
+    fetch(import.meta.env.VITE_BACKEND_URL + `/api/followings/${userId}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -79,7 +79,7 @@ const Topbar = () => {
     if (friends && friends.length > 0) {
       Promise.all(
         friends.map(friendId =>
-          fetch(`http://localhost:8080/api/profile/${friendId}`)
+          fetch(import.meta.env.VITE_BACKEND_URL + `/api/profile/${friendId}`)
             .then(res => res.json()) 
         )
       ).then(profilesArrays => {
@@ -111,7 +111,7 @@ const Topbar = () => {
           users.map((user) => (
             <a href={`/user/${user.username}`} key={user.id} style={{textDecoration: 'none'}}>
             <li key={user.id}>
-              <img src={`http://localhost:8080/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
+              <img src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
               <span><strong>{user.username}</strong></span>
               
             </li>
@@ -136,7 +136,7 @@ const Topbar = () => {
 
                 <a href={`/user/${user.username}`} key={user.id} style={{textDecoration: 'none'}}>
                 <li key={user.id}>
-                  <img src={`http://localhost:8080/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
+                  <img src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
                   <span><strong>{user.username}</strong></span>
                 </li>
                 </a>

@@ -37,7 +37,7 @@ export default function Profile() {
               .find(row => row.startsWith('isLogged='))
               ?.split('=')[1];
     
-            const response = await fetch("http://localhost:8080/api/auth/delete-account", {
+            const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/auth/delete-account", {
               method: "DELETE",
               headers: {
                 "Authorization": `Bearer ${token}`,
@@ -75,7 +75,7 @@ export default function Profile() {
                 
                 // Obtener el username del usuario actual
                 if (!loginData.id) return;
-                const currentUserResponse = await fetch(`http://localhost:8080/api/profile/${loginData.id}`);
+                const currentUserResponse = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/profile/${loginData.id}`);
                 if (!currentUserResponse.ok) throw new Error('Failed to fetch current user data');
                 const currentUserData = await currentUserResponse.json();
                 setCurrentUsername(currentUserData.username);
@@ -90,7 +90,7 @@ export default function Profile() {
                         return;
                     }
                     
-                    const userResponse = await fetch(`http://localhost:8080/api/profile/username/${username}`);
+                    const userResponse = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/profile/username/${username}`);
                     if (!userResponse.ok) {
                         throw new Error('Usuario no encontrado');
                     }
@@ -106,13 +106,13 @@ export default function Profile() {
                 }
                 
                 // Fetch profile data
-                const profileResponse = await fetch(`http://localhost:8080/api/profile/${profileUserId}`);
+                const profileResponse = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/profile/${profileUserId}`);
                 if (!profileResponse.ok) throw new Error('Failed to fetch profile');
                 const profileData = await profileResponse.json();
                 setProfile(profileData);
                 
                 // Fetch user posts
-                const postsResponse = await fetch(`http://localhost:8080/api/posts/user/${profileUserId}`);
+                const postsResponse = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/posts/user/${profileUserId}`);
                 if (!postsResponse.ok) throw new Error('Failed to fetch posts');
                 const postsData = await postsResponse.json();
                 setPosts(postsData || []);
@@ -132,7 +132,7 @@ export default function Profile() {
         if (!isOwnProfile) return; // Solo permitir eliminar en perfil propio
         
         try {
-            const response = await fetch(`http://localhost:8080/api/posts/${id}`, {
+            const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/posts/${id}`, {
                 method: 'DELETE',
             });
             
@@ -185,7 +185,7 @@ export default function Profile() {
                                 
                                 <img 
                                     className="profile-avatar" 
-                                    src={`http://localhost:8080/api/profile/img/${profile.avatar}`} 
+                                    src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${profile.avatar}`} 
                                     alt={`Avatar de ${profile.username}`} 
                                     width="400px"
                                     onError={(e) => {
@@ -226,7 +226,7 @@ export default function Profile() {
                                                 @{isOwnProfile ? "You" : profile.username}
                                             </h3>
                                             <img 
-                                                src={`http://localhost:8080/api/posts/img/${post.img}`} 
+                                                src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
                                                 alt="Post" 
                                                 className="post-image"
                                                 onError={(e) => {

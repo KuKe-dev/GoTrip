@@ -30,7 +30,7 @@ export default function Config() {
           .find(row => row.startsWith('isLogged='))
           ?.split('=')[1];
 
-        const response = await fetch("http://localhost:8080/api/auth/delete-account", {
+        const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/auth/delete-account", {
           method: "DELETE",
           headers: {
             "Authorization": `Bearer ${token}`,

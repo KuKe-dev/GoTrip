@@ -4,10 +4,10 @@ import './Navbar.css'
 export default function Navbar() {
 
     useEffect(() => {
-        const url = window.location.href;
+        const url = window.location.pathname;
         const navbar = document.getElementById('navbar');
 
-        if (url == 'http://localhost:5173/') {
+        if (url == '/') {
             navbar.classList.add('startAnimNavbar');
         }
     })

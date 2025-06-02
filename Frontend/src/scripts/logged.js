@@ -8,7 +8,7 @@ export function deleteCookie(name) {
 }
 
 export async function checkIsLogged(token) {
-    return await fetch('http://localhost:8080/api/auth/isLogged', {
+    return await fetch(import.meta.env.VITE_BACKEND_URL + '/api/auth/isLogged', {
         method: 'POST',
         credentials: 'include',
         headers: {

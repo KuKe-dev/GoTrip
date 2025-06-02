@@ -32,8 +32,8 @@ export default function Markers(props) {
       try {
         setLoading(true);
         const [postsRes, friendsRes] = await Promise.all([
-          fetch(`http://localhost:8080/api/posts/user/${userId}`),
-          fetch(`http://localhost:8080/api/followings/${userId}`)
+          fetch(import.meta.env.VITE_BACKEND_URL + `/api/posts/user/${userId}`),
+          fetch(import.meta.env.VITE_BACKEND_URL + `/api/followings/${userId}`)
         ]);
 
         const postsData = await postsRes.json();
@@ -61,14 +61,14 @@ export default function Markers(props) {
           const [postsArrays, profilesArrays] = await Promise.all([
             Promise.all(
               friends.map(friendId =>
-                fetch(`http://localhost:8080/api/posts/user/${friendId}`)
+                fetch(import.meta.env.VITE_BACKEND_URL + `/api/posts/user/${friendId}`)
                   .then(res => res.json())
                   .catch(() => [])
               )
             ),
             Promise.all(
               friends.map(friendId =>
-                fetch(`http://localhost:8080/api/profile/${friendId}`)
+                fetch(import.meta.env.VITE_BACKEND_URL + `/api/profile/${friendId}`)
                   .then(res => res.json())
                   .catch(() => null)
               )
@@ -100,7 +100,7 @@ export default function Markers(props) {
         
         // Fetch profile for each unique userId
         const profilePromises = uniqueUserIds.map(async userId => {
-          const response = await fetch(`http://localhost:8080/api/profile/${userId}`);
+          const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/profile/${userId}`);
           if (!response.ok) {
             throw new Error(`Error fetching profile for user ${userId}`);
           }
@@ -147,7 +147,7 @@ export default function Markers(props) {
 
     try {
       setDeletingPost(id);
-      const response = await fetch(`http://localhost:8080/api/posts/${id}`, {
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/posts/${id}`, {
         method: 'DELETE',
       });
 
@@ -219,7 +219,7 @@ export default function Markers(props) {
                 <div className="image-container">
                   <img 
                     className='post-image' 
-                    src={`http://localhost:8080/api/posts/img/${post.img}`} 
+                    src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
                     alt="Post"
                     loading="lazy"
                     onError={(e) => {
@@ -274,7 +274,7 @@ export default function Markers(props) {
                     {friendProfile?.avatar && (
                       <img 
                         className='user-avatar' 
-                        src={`http://localhost:8080/api/profile/img/${friendProfile.avatar}`} 
+                        src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${friendProfile.avatar}`} 
                         alt={`Perfil de ${friendProfile.username}`}
                         onError={(e) => {
                           e.target.style.display = 'none';
@@ -297,7 +297,7 @@ export default function Markers(props) {
                   <div className="image-container">
                     <img 
                       className='post-image' 
-                      src={`http://localhost:8080/api/posts/img/${post.img}`} 
+                      src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
                       alt="Post de amigo"
                       loading="lazy"
                       onError={(e) => {
@@ -345,7 +345,7 @@ export default function Markers(props) {
                     {profile.avatar && (
                       <img 
                         className='user-avatar' 
-                        src={`http://localhost:8080/api/profile/img/${profile.avatar}`} 
+                        src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${profile.avatar}`} 
                         alt={`Perfil de ${profile.username}`}
                         onError={(e) => {
                           e.target.style.display = 'none';
@@ -367,7 +367,7 @@ export default function Markers(props) {
                   <div className="image-container">
                     <img 
                       className='post-image' 
-                      src={`http://localhost:8080/api/posts/img/${post.img}`} 
+                      src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
                       alt="Post aleatorio"
                       loading="lazy"
                       onError={(e) => {
