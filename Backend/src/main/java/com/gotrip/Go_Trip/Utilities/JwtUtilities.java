@@ -4,7 +4,6 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.stereotype.Component;
-import io.github.cdimascio.dotenv.Dotenv;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -18,8 +17,7 @@ public class JwtUtilities {
     private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000; // 24 horas
 
     public JwtUtilities() {
-        Dotenv dotenv = Dotenv.load();
-        this.jwtSecret = dotenv.get("SECRET_KEY"); // Asegúrate de tener SECRET_KEY en tu .env
+        this.jwtSecret = System.getenv("SECRET_KEY"); // Asegúrate de tener SECRET_KEY en tu .env
     }
 
     // Genera un token JWT con claims personalizados

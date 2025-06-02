@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gotrip</groupId>
-	<artifactId>Go_Trip</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Go_Trip</name>
+	<artifactId>go_trip</artifactId>
+	<version>0.0.1</version>
+	<name>go_trip</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -73,16 +73,15 @@
     		<artifactId>mysql-connector-java</artifactId>
     		<version>8.0.33</version> <!-- o la versión más reciente -->
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java -->
-		<dependency>
-			<groupId>io.github.cdimascio</groupId>
-			<artifactId>dotenv-java</artifactId>
-			<version>3.2.0</version>
 		</dependency>
 	</dependencies>
 

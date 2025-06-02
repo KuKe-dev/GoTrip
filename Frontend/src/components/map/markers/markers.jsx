@@ -285,7 +285,7 @@ export default function Markers(props) {
                       <h3 className="username">
                         @{friendProfile?.username || 'Usuario'}
                       </h3>
-                      <span className="post-badge friend-badge">Amigo</span>
+                      <span className="post-badge friend-badge">Siguiendo</span>
                     </div>
                   </div>
                   {post.createdAt && (
