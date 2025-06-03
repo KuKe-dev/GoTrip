@@ -89,10 +89,10 @@ public class UserController {
 
             ResponseCookie cookie = ResponseCookie.from("isLogged", token)
                 .httpOnly(false)
-                .secure(false)
+                .secure(true)
                 .path("/")
                 .maxAge(24 * 60 * 60) // Seconds (24h)
-                .sameSite("None")
+                .sameSite("Lax")
                 .domain(".gotripsv.onrender.com")
                 .build();
 
