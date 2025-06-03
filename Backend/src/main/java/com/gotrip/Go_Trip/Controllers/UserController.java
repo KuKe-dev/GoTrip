@@ -93,7 +93,7 @@ public class UserController {
                 .path("/")
                 .maxAge(24 * 60 * 60) // Seconds (24h)
                 .sameSite("None")
-                .domain(".gotripsv.onrender.com")
+                .domain(".go-trip-cyan.vercel.app")
                 .build();
 
             

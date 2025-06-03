@@ -21,12 +21,10 @@ export default function Home() {
             })
 
     } , [])
-    
-const iframe = document.getElementById('myIframe');
 
   setTimeout(() => {
  // Establece cookie
-    console.log("Cookies después de establecerse:", iframe.contentDocument.cookie); // ✅ Ahora sí aparece
+    console.log("Cookies después de establecerse:", document.cookie); // ✅ Ahora sí aparece
 }, 3000);
 
   return (
