@@ -88,11 +88,11 @@ public class UserController {
             String token = jwtUtilities.generateToken(user.getId().toString(), user.getUsername(), user.getEmail());
 
             ResponseCookie cookie = ResponseCookie.from("isLogged", token)
-                .httpOnly(false)
-                .secure(false)
+                .httpOnly(true)
+                .secure(true)
                 .path("/")
                 .maxAge(24 * 60 * 60) // Seconds (24h)
-                .sameSite("Lax")
+                .sameSite("None")
                 .build();
 
             return ResponseEntity.ok()
