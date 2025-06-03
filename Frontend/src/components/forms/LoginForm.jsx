@@ -21,7 +21,10 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/auth/login', formData, {
-        withCredentials: "true"
+        withCredentials: "true",
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
 
     
