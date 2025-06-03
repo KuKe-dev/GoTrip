@@ -14,10 +14,9 @@ export default function Home() {
 
     useEffect(() => {
         const token = getCookie('isLogged');
-        console.log(token);
         checkIsLogged(token).then(res => res.json())
             .then(login => {
-                    setUser(login);setIsLogged(login.res);setIsLoading(false);console.log(login);
+                    setUser(login);setIsLogged(login.res);setIsLoading(false);
 
             })
 
