@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import Map from "../components/map/Map";
+import Map from "../components/map/map.jsx"
 import Sidebar from "../components/sidebar/Sidebar";
 import Topbar from "../components/topbar/Topbar";
 import { FaRedo } from "react-icons/fa";
