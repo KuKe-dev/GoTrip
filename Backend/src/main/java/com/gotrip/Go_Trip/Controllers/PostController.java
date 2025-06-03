@@ -46,8 +46,13 @@ public class PostController {
     }
 
     @GetMapping("/user/{id}")
-    public List<Post> getPostByUserId(@PathVariable Long id) {
-        return postService.getPostByUserId(id);
+    public ResponseEntity<?> getPostByUserId(@PathVariable Long id) {
+        try {
+            List<Post> posts = postService.getPostByUserId(id);
+            return ResponseEntity.ok(posts);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Error fetching posts");
+        }
     }
 
     @GetMapping(value = "/img/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
