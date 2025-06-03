@@ -9,11 +9,6 @@ const LoginPage = () => {
 
   useEffect(() => {
           checkIsLogged().then(res => res.json())
-              .then(login => {
-                  if (login.res === "true") {
-                      window.location.href = "/";
-                  }
-              })
   
       } , [])
 
