@@ -63,18 +63,18 @@ public class PostService {
     }
 
     private String saveImage(MultipartFile img, Long userId) throws IOException {
-    String imgName = userId + "" + System.currentTimeMillis() + ".jpg";
-    String path = "src/main/resources/static/Img/Posts/" + imgName;
-    
-    // Crear directorio si no existe
-    new File("src/main/resources/static/Img/Posts/").mkdirs();
-    
-    try (FileOutputStream fos = new FileOutputStream(path)) {
-        fos.write(img.getBytes());
+        String imgName = userId + "" + System.currentTimeMillis() + ".jpg";
+        String path = "src/main/resources/static/Img/Posts/" + imgName;
+        
+        // Crear directorio si no existe
+        new File("src/main/resources/static/Img/Posts/").mkdirs();
+        
+        try (FileOutputStream fos = new FileOutputStream(path)) {
+            fos.write(img.getBytes());
+        }
+        
+        return imgName;
     }
-    
-    return imgName;
-}
 
 
     @Transactional

@@ -69,7 +69,7 @@ public class PostController {
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(imageBytes);
-}
+    }
 
     @PostMapping()
     public void addPost( @RequestParam("userId") Long userId,
