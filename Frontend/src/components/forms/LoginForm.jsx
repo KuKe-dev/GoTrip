@@ -42,7 +42,7 @@ const LoginForm = () => {
 
       setTimeout(() => {
         document.body.removeChild(messageDiv);
-        window.location.href = '/';
+        window.location.pathname = '/';
       }, 1000);
 
     } catch (error) {
@@ -97,7 +97,7 @@ const LoginForm = () => {
       <button type="submit">Entrar</button>
 
       <div className="register-link">
-        ¿No estás registrado aún? <a href="/Register">Regístrate aquí</a>
+        ¿No estás registrado aún? <a href="/register">Regístrate aquí</a>
       </div>
     </form>
   );

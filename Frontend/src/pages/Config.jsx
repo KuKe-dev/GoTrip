@@ -41,7 +41,7 @@ export default function Config() {
         if (response.ok) {
           document.cookie = "isLogged=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
           await Swal.fire('Cuenta eliminada', 'Tu cuenta ha sido eliminada correctamente.', 'success');
-          navigate("/Register");
+          navigate("/register");
             
         } else {
           const errorData = await response.json();
