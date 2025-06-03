@@ -1,7 +1,7 @@
 export function getCookie(name) {
     window.onload = () => {
-        const cookies = document.cookie.split("; ");
-        
+        var cookies = document.cookie.split("; ");
+        console.log(cookies);
         for (let cookie of cookies) {
             const [key, value] = cookie.split("=");
             if (key === name) {

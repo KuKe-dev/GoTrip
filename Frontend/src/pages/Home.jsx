@@ -20,6 +20,9 @@ export default function Home() {
 
             })
 
+            const todasLasCookies = document.cookie;
+console.log(todasLasCookies); 
+
     } , [])
 
     if (isLoading) {
