@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import Topbar from "../components/topbar/Topbar";
-import Map from "../components/map/Map";
+import Map from "../components/map/map.jsx"
 import "./Home.css";
 import { getCookie, checkIsLogged } from "../scripts/logged";
 
