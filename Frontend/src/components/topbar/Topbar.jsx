@@ -54,8 +54,7 @@ const Topbar = () => {
   useEffect(() => {
     const fetchUserId = async () => {
       try {
-        const token = getCookie('isLogged');
-        const loginResponse = await checkIsLogged(token);
+        const loginResponse = await checkIsLogged();
         const loginData = await loginResponse.json();
         setUserId(loginData.id);
       } catch (error) {
