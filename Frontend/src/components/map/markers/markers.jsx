@@ -85,6 +85,9 @@ export default function Markers(props) {
           setFriendsPosts([]);
           setFriendsProfile([]);
         }
+      } else {
+        setFriendsPosts([]);
+        setFriendsProfile([]);
       }
     };
 
