@@ -39,6 +39,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController //le dice a spring esta clase es un controlador web que respond epeticiones HTTP con datos
 @RequestMapping("/api") //todas las rutas de esta clase empezaran asi
 
@@ -108,37 +111,55 @@ public class UserController {
     }
     
     @PostMapping("/auth/isLogged")
-    public ResponseEntity<?> isLogged(@RequestBody String token) {
-        
+    public ResponseEntity<?> isLogged(HttpServletRequest request) {  // Cambiado a HttpServletRequest para acceder a las cookies
         JwtUtilities jwtUtilities = new JwtUtilities();
-        try {
-
-        // Parse the token to get the claims
-        Map<String, Object> claims = jwtUtilities.parseToken(token);
-
-        // Check if token is expired (parseToken would throw exception if expired,
-        long expirationTime = ((Number) claims.get("exp")).longValue() * 1000;
-        Date expirationDate = new Date(expirationTime);
-
-        if (expirationDate.before(new Date())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token expired");
-        }
-
-        // Token is valid - return user information
-        Map<String, String> response = new HashMap<>();
-        response.put("res", "true");
-        response.put("id", (String) claims.get("id"));
-        response.put("username", (String) claims.get("username"));
-        response.put("email", (String) claims.get("email"));
         
+        // Extraer el token de las cookies
+        Cookie[] cookies = request.getCookies();
+        String token = null;
+        
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("isLogged".equals(cookie.getName())) {  // Asume que la cookie se llama "token"
+                    token = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        
+        if (token == null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("res", "false");
+            response.put("message", "No token found in cookies");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+        
+        try {
+            // Parse the token to get the claims
+            Map<String, Object> claims = jwtUtilities.parseToken(token);
 
-        return ResponseEntity.ok(response);
-    } catch (Exception e) {
-        Map<String, String> response = new HashMap<>();
-        response.put("res", "false");
-        response.put("message", "Invalid token" + e.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-    }
+            // Check if token is expired
+            long expirationTime = ((Number) claims.get("exp")).longValue() * 1000;
+            Date expirationDate = new Date(expirationTime);
+
+            if (expirationDate.before(new Date())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token expired");
+            }
+
+            // Token is valid - return user information
+            Map<String, String> response = new HashMap<>();
+            response.put("res", "true");
+            response.put("id", (String) claims.get("id"));
+            response.put("username", (String) claims.get("username"));
+            response.put("email", (String) claims.get("email"));
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("res", "false");
+            response.put("message", "Invalid token: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
     }
     
     @GetMapping("/profile/{id}")
