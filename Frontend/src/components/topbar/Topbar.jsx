@@ -66,12 +66,15 @@ const Topbar = () => {
 
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_BACKEND_URL + `/api/followings/${userId}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setFriends(data);
-      });
+    if (userId) { // Only run if userId exists
+      fetch(import.meta.env.VITE_BACKEND_URL + `/api/followings/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          setFriends(data);
+        })
+        .catch(error => console.error('Error fetching followings:', error));
+    }
   }, [userId]);
 
   useEffect(() => {
