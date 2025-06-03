@@ -13,16 +13,12 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-      window.onload = () => {
         const token = getCookie('isLogged');
         checkIsLogged(token).then(res => res.json())
             .then(login => {
                     setUser(login);setIsLogged(login.res);setIsLoading(false);
 
             })
-      }
-        
-        
 
     } , [])
 
