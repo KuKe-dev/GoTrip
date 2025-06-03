@@ -1,15 +1,6 @@
 export function getCookie(name) {
-    window.onload = () => {
-        var cookies = document.cookie.split("; ");
-        console.log(cookies);
-        for (let cookie of cookies) {
-            const [key, value] = cookie.split("=");
-            if (key === name) {
-                return value;
-            }
-        }
-    return null;
-    }
+    const cookie = document.cookie.split(";").find(cookie => cookie.includes(name));
+    return cookie ? cookie.split("=")[1].trim() : "false";
 }
 
 export function deleteCookie(name) {
