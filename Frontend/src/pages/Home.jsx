@@ -24,6 +24,9 @@ export default function Home() {
 
     console.log("Cookies después de establecerse:", getCookie("a")); // ✅ Ahora sí aparece
 
+    if (isLoading) {
+        return <div></div>;
+    }
 
   return (
     <div className="home-container">
