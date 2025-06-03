@@ -92,7 +92,7 @@ public class UserController {
                 .secure(true)
                 .path("/")
                 .maxAge(24 * 60 * 60) // Seconds (24h)
-                .sameSite("Lax")
+                .sameSite("None")
                 .domain(".gotripsv.onrender.com")
                 .build();
 
