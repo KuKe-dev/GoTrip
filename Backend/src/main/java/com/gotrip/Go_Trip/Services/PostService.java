@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,8 @@ public class PostService {
     }
 
     public List<Post> getPostByUserId(Long id) {
-        return postRepository.getPostByUserId(id);
+    List<Post> posts = postRepository.getPostByUserId(id);
+    return posts != null ? posts : Collections.emptyList(); // Ensure never null
     }
 
 
@@ -56,8 +58,8 @@ public class PostService {
         post.setLatitude(latitude);
         post.setLongitude(longitude);
         // Guardar la imagen y obtener su nombre
-       // return postRepository.addPost(userId, imgName, description, latitude, longitude);
-       return postRepository.save(post);
+        // return postRepository.addPost(userId, imgName, description, latitude, longitude);
+        return postRepository.save(post);
     }
 
     private String saveImage(MultipartFile img, Long userId) throws IOException {
