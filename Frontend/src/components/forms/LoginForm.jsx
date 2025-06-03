@@ -97,7 +97,7 @@ const LoginForm = () => {
       <button type="submit">Entrar</button>
 
       <div className="register-link">
-        ¿No estás registrado aún? <a href="/register">Regístrate aquí</a>
+        ¿No estás registrado aún? <a onClick={() => navigate('/register')}>Regístrate aquí</a>
       </div>
     </form>
   );
