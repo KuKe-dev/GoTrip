@@ -22,6 +22,9 @@ export default function Home() {
 
     } , [])
 
+  const todasLasCookies = document.cookie;
+  console.log(todasLasCookies); 
+
   return (
     <div className="home-container">
         <Sidebar/>
