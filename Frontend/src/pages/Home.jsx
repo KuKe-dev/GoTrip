@@ -29,6 +29,9 @@ console.log(todasLasCookies);
         return <div className="home-container"><Sidebar/><Topbar /></div>;
     }
 
+    const todasLasCookies = document.cookie;
+console.log(todasLasCookies); 
+
   return (
     <div className="home-container">
         <Sidebar/>
