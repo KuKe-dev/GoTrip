@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './pages/Home.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -13,7 +13,7 @@ import Explore from './pages/Explore.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
@@ -24,7 +24,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         {/* <Route path="/settings" element={<Config />} /> */}
       </Routes>
-    </BrowserRouter>
+    </Router>
   )
 }
 
