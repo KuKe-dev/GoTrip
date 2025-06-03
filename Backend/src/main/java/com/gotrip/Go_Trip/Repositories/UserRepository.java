@@ -24,17 +24,17 @@ public interface UserRepository extends JpaRepository<User, Long>{ //Esta trabja
 
     boolean existsByEmail(String email);  //verifica si ese usuario ya existe
 
-    @Query(value = "SELECT * FROM gotrip_db.users WHERE id=:id", nativeQuery = true)
+    @Query(value = "SELECT * FROM \"users\" WHERE id = :id", nativeQuery = true)
     User getUserProfile(@Param("id") Long id);
 
     @Modifying
-    @Query(value = "DELETE FROM gotrip_db.posts WHERE `user-id` = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM \"posts\" WHERE \"user-id\" = :id", nativeQuery = true)
     void deleteUserPosts(@Param("id") Long id);
 
     @Modifying
-    @Query(value = "DELETE FROM gotrip_db.users WHERE id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM \"users\" WHERE id = :id", nativeQuery = true)
     void deleteUser(@Param("id") Long id);
 
-    @Query(value = "SELECT * FROM users WHERE username LIKE concat('%',:searchTerm,'%')", nativeQuery = true)
+    @Query(value = "SELECT * FROM \"users\" WHERE username LIKE concat('%',:searchTerm,'%')", nativeQuery = true)
     List<User> searchUsers(@Param("searchTerm") String searchTerm);
 }
