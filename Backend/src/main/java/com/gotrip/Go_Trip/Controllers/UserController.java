@@ -93,7 +93,10 @@ public class UserController {
                 .path("/")
                 .maxAge(24 * 60 * 60) // Seconds (24h)
                 .sameSite("None")
+                .domain("gotripsv.onrender.com")
                 .build();
+
+            
 
             return ResponseEntity.ok()
                         .header("Set-Cookie", cookie.toString())
@@ -102,7 +105,7 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
-   
+
     }
     
     @PostMapping("/auth/isLogged")
