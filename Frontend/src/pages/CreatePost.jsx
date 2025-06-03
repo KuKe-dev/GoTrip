@@ -69,8 +69,7 @@ export default function CreatePost() {
     };
 
     useEffect(() => {
-        const token = getCookie('isLogged');
-        checkIsLogged(token)
+        checkIsLogged()
             .then(res => res.json())
             .then(login => {
 

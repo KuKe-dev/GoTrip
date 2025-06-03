@@ -12,8 +12,7 @@ export default function FriendButton({ targetUserId, targetUsername, className =
     useEffect(() => {
         const checkFollowStatus = async () => {
             try {
-                const token = getCookie('isLogged');
-                const loginResponse = await checkIsLogged(token);
+                const loginResponse = await checkIsLogged();
                 const loginData = await loginResponse.json();
                 
                 if (loginData.res === "false") {

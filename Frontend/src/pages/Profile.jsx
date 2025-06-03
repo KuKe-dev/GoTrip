@@ -64,8 +64,7 @@ export default function Profile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = getCookie('isLogged');
-                const loginResponse = await checkIsLogged(token);
+                const loginResponse = await checkIsLogged();
                 const loginData = await loginResponse.json();
                 
 

@@ -20,8 +20,7 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    const token = getCookie('isLogged');
-    checkIsLogged(token).then(res => res.json())
+    checkIsLogged().then(res => res.json())
         .then(login => {
                 setIsLogged(login);setIsLoading(false);
         })

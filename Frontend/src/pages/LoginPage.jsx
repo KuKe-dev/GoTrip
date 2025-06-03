@@ -8,8 +8,7 @@ import { getCookie, checkIsLogged } from '../scripts/logged';
 const LoginPage = () => {
 
   useEffect(() => {
-          const token = getCookie('isLogged');
-          checkIsLogged(token).then(res => res.json())
+          checkIsLogged().then(res => res.json())
               .then(login => {
                   if (login.res === "true") {
                       window.location.href = "/";
