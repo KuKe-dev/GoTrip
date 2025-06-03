@@ -22,6 +22,10 @@ export default function Home() {
 
     } , [])
 
+    if (isLoading) {
+        return <div className="home-container"><Sidebar/><Topbar /></div>;
+    }
+
   return (
     <div className="home-container">
         <Sidebar/>
