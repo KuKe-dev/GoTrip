@@ -1,6 +1,8 @@
 export function getCookie(name) {
     const cookie = document.cookie.split(";").find(cookie => cookie.includes(name));
+    console.log(cookie.split("=")[1].trim());
     return cookie ? cookie.split("=")[1].trim() : "false";
+    
 }
 
 export function deleteCookie(name) {

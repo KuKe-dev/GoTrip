@@ -92,8 +92,8 @@ public class UserController {
                 .secure(true)
                 .path("/")
                 .maxAge(24 * 60 * 60) // Seconds (24h)
+                .domain("go-trip-cyan.vercel.app")
                 .sameSite("None")
-                /* .domain(".go-trip-cyan.vercel.app") */
                 .build();
 
             

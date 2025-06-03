@@ -22,10 +22,8 @@ export default function Home() {
 
     } , [])
 
-  setTimeout(() => {
- // Establece cookie
-    console.log("Cookies después de establecerse:", document.cookie); // ✅ Ahora sí aparece
-}, 3000);
+    console.log("Cookies después de establecerse:", getCookie("a")); // ✅ Ahora sí aparece
+
 
   return (
     <div className="home-container">
