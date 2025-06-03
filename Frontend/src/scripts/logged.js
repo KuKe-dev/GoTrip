@@ -1,8 +1,12 @@
 export function getCookie(name) {
-    const cookie = document.cookie;
-    console.log(name);
-    console.log(cookie);
-    return cookie ? cookie.split("=")[0].trim() : "false";
+    const cookies = document.cookie.split("; ");
+    for (let cookie of cookies) {
+        const [key, value] = cookie.split("=");
+        if (key === name) {
+            return value;
+        }
+    }
+    return null;
 }
 
 export function deleteCookie(name) {
