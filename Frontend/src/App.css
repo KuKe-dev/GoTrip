@@ -16,11 +16,11 @@
   bottom: 0;
   margin: auto;
   width: 80%;
-  height: auto;
+  height: min-content;
   z-index: 9999;
   background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
-  padding: 15px 25px;
+  padding: 40px;
   text-align: center;
   font-size: 14px;
   font-weight: 500;
@@ -62,7 +62,7 @@
 }
 
 /* Hide on desktop screens */
-@media (max-width: 768px) {
+@media (max-width: 905px) {
   .warning-responsive {
     display: flex;
     align-items: center;

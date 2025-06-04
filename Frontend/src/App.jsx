@@ -29,7 +29,7 @@ function App() {
     </BrowserRouter>
     </div>
     <div className="warning-responsive">
-      Esta aplicación no tiene resposive design. Activa el modo de escritorio o utiliza el navegador en modo escritorio.
+      Esta aplicación no tiene resposive design. Utiliza el navegador en modo escritorio.
     </div>
     </>
   )
