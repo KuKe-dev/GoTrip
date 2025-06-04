@@ -222,7 +222,7 @@ export default function Markers(props) {
                 <div className="image-container">
                   <img 
                     className='post-image' 
-                    src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
+                    src={post.img} 
                     alt="Post"
                     loading="lazy"
                     onError={(e) => {
@@ -300,7 +300,7 @@ export default function Markers(props) {
                   <div className="image-container">
                     <img 
                       className='post-image' 
-                      src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
+                      src={post.img} 
                       alt="Post de amigo"
                       loading="lazy"
                       onError={(e) => {
@@ -370,7 +370,7 @@ export default function Markers(props) {
                   <div className="image-container">
                     <img 
                       className='post-image' 
-                      src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
+                      src={post.img} 
                       alt="Post aleatorio"
                       loading="lazy"
                       onError={(e) => {

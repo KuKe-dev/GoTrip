@@ -225,7 +225,7 @@ export default function Profile() {
                                                 @{isOwnProfile ? "You" : profile.username}
                                             </h3>
                                             <img 
-                                                src={import.meta.env.VITE_BACKEND_URL + `/api/posts/img/${post.img}`} 
+                                                src={post.img} 
                                                 alt="Post" 
                                                 className="post-image"
                                                 onError={(e) => {
