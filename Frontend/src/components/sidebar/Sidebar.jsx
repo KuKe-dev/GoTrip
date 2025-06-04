@@ -49,22 +49,15 @@ const Sidebar = () => {
             <span>Explora</span>
         </li>
 
-        <li onClick={() => navigate("/profile")}>
+        { isLogged.res === "true" && <li onClick={() => navigate("/profile")}>
             <FaUser className="icon" /> 
             <span>Perfil</span>
-        </li>
+        </li>}
         
-        <li onClick={() => navigate("/createPost")}>
-
+        { isLogged.res === "true" && <li onClick={() => navigate("/createPost")}>
             <FaPlusCircle className="icon" /> 
             <span>Nueva Publicación</span>
-
-        </li>    
-
-        {/* <li onClick={() => navigate("/settings")}>
-          <FaCog className="icon" /> 
-          <span>Configuración</span>
-        </li> */}
+        </li>}
 
         {isLogged.res === "true" ? 
         <li onClick={handleLogout} className="menu-link logout">
