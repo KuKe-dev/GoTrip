@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gotrip.Go_Trip.Entities.User;
 import com.gotrip.Go_Trip.Repositories.UserRepository;
+import com.gotrip.Go_Trip.Utilities.CloudinaryService;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

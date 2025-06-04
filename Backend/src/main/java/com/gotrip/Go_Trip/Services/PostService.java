@@ -17,6 +17,8 @@ import com.gotrip.Go_Trip.Repositories.PostRepository;
 
 import jakarta.transaction.Transactional;
 
+import com.gotrip.Go_Trip.Utilities.CloudinaryService;
+
 
 
 @Service

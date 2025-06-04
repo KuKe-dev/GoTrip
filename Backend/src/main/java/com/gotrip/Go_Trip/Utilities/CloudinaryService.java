@@ -1,3 +1,5 @@
+package com.gotrip.Go_Trip.Utilities;
+
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Service;
