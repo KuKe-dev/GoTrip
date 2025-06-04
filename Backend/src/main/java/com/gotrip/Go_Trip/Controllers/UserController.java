@@ -193,15 +193,21 @@ public class UserController {
     }
 
     @DeleteMapping("/auth/delete-account")
-    public ResponseEntity<?> deleteAccount(@RequestHeader("Authorization") String authHeader) {
+    public ResponseEntity<?> deleteAccount(HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+        String token = null;
         try {
             // Valida el formato del header "Bearer token"
-            if (authHeader == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token no proporcionado o formato inválido");
+            if (cookies == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No token found in cookies");
             }
-
-            // Extrae el token (elimina "Bearer ")
-            String token = authHeader.substring(7);
+            for (Cookie cookie : cookies) {
+                if ("isLogged".equals(cookie.getName())) {
+                    token = cookie.getValue();
+                    break;
+                }
+            }
 
             // Usa tu JwtUtilities para validar y extraer el username
             JwtUtilities jwtUtilities = new JwtUtilities();

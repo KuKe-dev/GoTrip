@@ -32,17 +32,9 @@ export default function Profile() {
     
       if (result.isConfirmed) {
           try {
-            const token = document.cookie
-              .split('; ')
-              .find(row => row.startsWith('isLogged='))
-              ?.split('=')[1];
-    
             const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/auth/delete-account", {
               method: "DELETE",
-              headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
-              }
+              credentials: "include",
             });
     
             if (response.ok) {
