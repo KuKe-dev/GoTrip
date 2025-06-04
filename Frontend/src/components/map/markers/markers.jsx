@@ -277,7 +277,7 @@ export default function Markers(props) {
                     {friendProfile?.avatar && (
                       <img 
                         className='user-avatar' 
-                        src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${friendProfile.avatar}`} 
+                        src={friendProfile.avatar} 
                         alt={`Perfil de ${friendProfile.username}`}
                         onError={(e) => {
                           e.target.style.display = 'none';
@@ -348,7 +348,7 @@ export default function Markers(props) {
                     {profile.avatar && (
                       <img 
                         className='user-avatar' 
-                        src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${profile.avatar}`} 
+                        src={profile.avatar} 
                         alt={`Perfil de ${profile.username}`}
                         onError={(e) => {
                           e.target.style.display = 'none';

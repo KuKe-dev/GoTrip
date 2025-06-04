@@ -113,7 +113,7 @@ const Topbar = () => {
           users.map((user) => (
             <a href={`/user/${user.username}`} key={user.id} style={{textDecoration: 'none'}}>
             <li key={user.id}>
-              <img src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
+              <img src={user.avatar} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
               <span><strong>{user.username}</strong></span>
               
             </li>
@@ -138,7 +138,7 @@ const Topbar = () => {
 
                 <a href={`/user/${user.username}`} key={user.id} style={{textDecoration: 'none'}}>
                 <li key={user.id}>
-                  <img src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${user.avatar}`} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
+                  <img src={user.avatar} alt="Avatar" className="avatar" style={{borderRadius: '50%', width: '50px', height: '50px'}}/>
                   <span><strong>{user.username}</strong></span>
                 </li>
                 </a>

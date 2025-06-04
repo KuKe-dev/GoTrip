@@ -184,7 +184,7 @@ export default function Profile() {
                                 
                                 <img 
                                     className="profile-avatar" 
-                                    src={import.meta.env.VITE_BACKEND_URL + `/api/profile/img/${profile.avatar}`} 
+                                    src={profile.avatar} 
                                     alt={`Avatar de ${profile.username}`} 
                                     width="400px"
                                     onError={(e) => {
