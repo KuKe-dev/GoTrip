@@ -21,8 +21,8 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     @Query(value = "SELECT * FROM \"posts\" WHERE \"user-id\" = :id", nativeQuery = true)
     List<Post> getPostByUserId(@Param("id") Long id);
 
-    @Query(value = "SELECT img FROM \"posts\" WHERE id = :id", nativeQuery = true)
-    String getImgName(@Param("id") Long id); 
+    /* @Query(value = "SELECT img FROM \"posts\" WHERE id = :id", nativeQuery = true)
+    String getImgName(@Param("id") Long id);  */
 
     @Query(value = "SELECT * FROM \"posts\" ORDER BY random() LIMIT 5", nativeQuery = true)
     List<Post> getRandomPosts();
