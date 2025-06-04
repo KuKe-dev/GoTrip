@@ -196,7 +196,7 @@ public class UserController {
     public ResponseEntity<?> deleteAccount(@RequestHeader("Authorization") String authHeader) {
         try {
             // Valida el formato del header "Bearer token"
-            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            if (authHeader == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token no proporcionado o formato inválido");
             }
 
