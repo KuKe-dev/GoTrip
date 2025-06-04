@@ -8,6 +8,7 @@
 }
 
 .warning-responsive {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -57,8 +58,11 @@
 }
 
 /* Hide on desktop screens */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .warning-responsive {
+    display: block;
+  }
+  .App {
     display: none;
   }
 }

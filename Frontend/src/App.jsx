@@ -14,6 +14,7 @@ import Explore from './pages/Explore.jsx';
 function App() {
   return (
     <>
+    <div className="App">
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,6 +27,7 @@ function App() {
         {/* <Route path="/settings" element={<Config />} /> */}
       </Routes>
     </BrowserRouter>
+    </div>
     <div className="warning-responsive">
       Esta aplicación no tiene resposive design. Activa el modo de escritorio o utiliza el navegador en modo escritorio.
     </div>
