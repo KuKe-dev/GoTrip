@@ -13,7 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gotrip.Go_Trip.Entities.Post;
 import com.gotrip.Go_Trip.Entities.User;
+import com.gotrip.Go_Trip.Repositories.PostRepository;
 import com.gotrip.Go_Trip.Repositories.UserRepository;
 import com.gotrip.Go_Trip.Utilities.CloudinaryService;
 
@@ -28,6 +30,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final CloudinaryService cloudinaryService;
+    private final PostRepository postRepository;
 
     /* public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -113,8 +116,20 @@ public class UserService {
                 System.err.println("Error al eliminar avatar de Cloudinary: " + e.getMessage());
             }
         }    
-        
+
         // Eliminamos los posts del usuario
+        List<Post> posts = postRepository.getPostByUserId(id);
+        for (Post post : posts) {
+            // Eliminamos la imagen de Cloudinary
+            if (post.getImg() != null && !post.getImg().isEmpty()) {
+                try {
+                    cloudinaryService.deleteImage(post.getImg());
+                } catch (IOException e) {
+                    // Puedes loggear el error pero no interrumpir la eliminación
+                    System.err.println("Error al eliminar imagen de Cloudinary: " + e.getMessage());
+                }
+            }
+        }
         userRepository.deleteUserPosts(id);
         
         // Finalmente eliminamos el usuario
