@@ -54,28 +54,18 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    
-    /* El siguiente metodo recibe una peticion HTTP POST que llega a la ruta /api/auth/register
-     * El RequestBody dice: el JSON lo convierto en un objeto User.
-     * El ResponseEntity permite devolver una respuesta personalizada
-     */
     @PostMapping("/auth/register")
     public ResponseEntity<?> register(
-                                @RequestParam("username") String username,
-                                @RequestParam("email") String email,
-                                @RequestParam("password") String password,
-                                @RequestParam("avatar") MultipartFile avatar,
-                                @RequestParam("bio") String bio
-                            ) throws IOException {
-
-        /* Si todo va bien llama a registerUser (UserService) y devuelve 200 OK con el usuariola clas
-         * Si ocurre un error captura la excepción y devuelve 400 Bad Request conn el mensaje de error
-         */
-        try{
+            @RequestParam("username") String username,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            @RequestParam("avatar") MultipartFile avatar,
+            @RequestParam("bio") String bio
+    ) throws IOException {
+        try {
             User newUser = userService.registerUser(username, email, password, avatar, bio);
             return ResponseEntity.ok(newUser);
-        }catch(RuntimeException e){
+        } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -168,22 +158,6 @@ public class UserController {
     Map<String, String> userProfile = userService.getUserProfile(id);
     return userProfile;
     }
-
-    @GetMapping(value = "/profile/img/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getAvatar(@PathVariable String imageName) throws IOException {
-    // Ruta relativa al directorio del proyecto
-    Path imagePath = Paths.get("src/main/resources/static/Img/Avatars/" + imageName);
-    
-    if (!Files.exists(imagePath)) {
-        return ResponseEntity.notFound().build();
-    }
-    
-    byte[] imageBytes = Files.readAllBytes(imagePath);
-    
-    return ResponseEntity.ok()
-            .contentType(MediaType.IMAGE_JPEG)
-            .body(imageBytes);
-}
 
     @GetMapping("profile/username/{username}")
     public ResponseEntity<?> getProfileByUsername(@PathVariable String username) {

@@ -55,36 +55,19 @@ public class PostController {
         }
     }
 
-    @GetMapping(value = "/img/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getImage(@PathVariable String imageName) throws IOException {
-        
-        Path imagePath = Paths.get("src/main/resources/static/Img/Posts/" + imageName);
-        
-        if (!Files.exists(imagePath)) {
-            return ResponseEntity.notFound().build();
-        }
-        
-        byte[] imageBytes = Files.readAllBytes(imagePath);
-        
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(imageBytes);
-    }
-
     @PostMapping()
-    public void addPost( @RequestParam("userId") Long userId,
+    public ResponseEntity<?> addPost(
+            @RequestParam("userId") Long userId,
             @RequestParam("image") MultipartFile image,
             @RequestParam("description") String description,
             @RequestParam("latitude") float latitude,
             @RequestParam("longitude") float longitude) throws IOException {
-
-        /* long userId = 1; */
         try {
-            postService.addPost(userId, image, description, latitude, longitude);
+            Post post = postService.addPost(userId, image, description, latitude, longitude);
+            return ResponseEntity.ok(post);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
     }
 
     @GetMapping("/randoms")

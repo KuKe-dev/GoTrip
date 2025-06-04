@@ -23,11 +23,13 @@ import jakarta.transaction.Transactional;
 public class PostService {
 
     //* Methods injection
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
+    private final CloudinaryService cloudinaryService;
 
-    public PostService(PostRepository postRepository) {
+    @Autowired
+    public PostService(PostRepository postRepository, CloudinaryService cloudinaryService) {
         this.postRepository = postRepository;
+        this.cloudinaryService = cloudinaryService;
     }
 
     //- Methods
@@ -47,33 +49,19 @@ public class PostService {
 
 
     @Transactional
-    public Post addPost(Long userId, MultipartFile img, String description, float latitude, float longitude) throws IOException {
-
-        String imgName = saveImage(img, userId); 
+    public Post addPost(Long userId, MultipartFile img, String description, 
+        float latitude, float longitude) throws IOException {
+        // Subir imagen a Cloudinary
+        String imageUrl = cloudinaryService.uploadImage(img, "posts");
 
         Post post = new Post();
         post.setUserId(userId);
-        post.setImg(imgName);
+        post.setImg(imageUrl); // Ahora almacenamos la URL completa
         post.setDescription(description);
         post.setLatitude(latitude);
         post.setLongitude(longitude);
-        // Guardar la imagen y obtener su nombre
-        // return postRepository.addPost(userId, imgName, description, latitude, longitude);
-        return postRepository.save(post);
-    }
 
-    private String saveImage(MultipartFile img, Long userId) throws IOException {
-        String imgName = userId + "" + System.currentTimeMillis() + ".jpg";
-        String path = "src/main/resources/static/Img/Posts/" + imgName;
-        
-        // Crear directorio si no existe
-        new File("src/main/resources/static/Img/Posts/").mkdirs();
-        
-        try (FileOutputStream fos = new FileOutputStream(path)) {
-            fos.write(img.getBytes());
-        }
-        
-        return imgName;
+        return postRepository.save(post);
     }
 
 

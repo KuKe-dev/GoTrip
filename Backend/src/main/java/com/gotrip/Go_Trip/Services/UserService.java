@@ -26,53 +26,35 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final CloudinaryService cloudinaryService;
 
     /* public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     } */
 
-    public User registerUser(String username, String email, String password, MultipartFile avatar, String bio) throws IOException{ // este metodo hace todo el trabajo cuando un usuario se registra, recibe los datos del usuario
-
-        if(userRepository.existsByUsername(username)){
+    public User registerUser(String username, String email, String password, 
+        MultipartFile avatar, String bio) throws IOException {
+        if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("El nombre de usuario ya existe.");
         }
 
-        if(userRepository.existsByEmail(email)){
+        if (userRepository.existsByEmail(email)) {
             throw new RuntimeException("El email ya esta asociado a una cuenta.");
         }
-        String avatarName = saveAvatar(avatar, username);
+
+        // Subir avatar a Cloudinary
+        String avatarUrl = cloudinaryService.uploadImage(avatar, "avatars");
 
         User user = new User();
-
         user.setUsername(username);
         user.setEmail(email);
-        user.setPassword((passwordEncoder.encode(password))); //encripta la contraseña
-        user.setAvatar(avatarName);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setAvatar(avatarUrl); // Ahora almacenamos la URL completa
         user.setBio(bio);
         user.setCreatedAt(LocalDate.now());
 
         return userRepository.save(user);
-    }
-    
-    private String saveAvatar(MultipartFile avatar, String username) throws IOException {
-        String avatarName = username + "_" + System.currentTimeMillis() + ".jpg";
-        String directoryPath = "src/main/resources/static/Img/Avatars/";
-        
-        // Crear directorio si no existe
-        File directory = new File(directoryPath);
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
-        
-        // Ruta completa del archivo
-        String filePath = directoryPath + avatarName;
-        
-        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-            fos.write(avatar.getBytes());
-        }
-        
-        return avatarName;
     }
 
     public User login(String usernameOrEmail , String password) {
