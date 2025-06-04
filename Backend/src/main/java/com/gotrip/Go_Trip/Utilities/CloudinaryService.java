@@ -24,16 +24,20 @@ public class CloudinaryService {
     }
 
     public String uploadImage(MultipartFile file, String folder) throws IOException {
-        String publicId = folder + "_" + System.currentTimeMillis();
-        
-        Map<String, Object> uploadParams = new HashMap<>();
-        uploadParams.put("public_id", publicId);
-        uploadParams.put("folder", folder);
-        uploadParams.put("overwrite", false);
-        
-        Map<?, ?> uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadParams);
-        return (String) uploadResult.get("secure_url");
-    }
+    String publicId = folder + "_" + System.currentTimeMillis();
+    
+    Map<String, Object> uploadParams = new HashMap<>();
+    uploadParams.put("public_id", publicId);
+    uploadParams.put("folder", folder);
+    uploadParams.put("overwrite", false);
+    
+    // Parámetros de compresión y optimización
+    uploadParams.put("quality", "auto:good"); // Compresión automática balanceada
+    uploadParams.put("fetch_format", "auto"); // Formato automático (webp cuando sea posible)
+    
+    Map<?, ?> uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadParams);
+    return (String) uploadResult.get("secure_url");
+}
 
     public boolean deleteImage(String imageUrl) throws IOException {
     if (imageUrl == null || imageUrl.isEmpty()) {

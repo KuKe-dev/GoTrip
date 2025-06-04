@@ -6,3 +6,59 @@
   background-color: #f8f9fa;
   overflow-x: hidden;
 }
+
+.warning-responsive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.5s ease-out;
+}
+
+.warning-responsive::before {
+  content: "⚠️";
+  margin-right: 10px;
+  font-size: 16px;
+  filter: brightness(1.2);
+}
+
+/* Glassmorphism effect */
+.warning-responsive::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Animation for smooth appearance */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Hide on desktop screens */
+@media (min-width: 768px) {
+  .warning-responsive {
+    display: none;
+  }
+}
