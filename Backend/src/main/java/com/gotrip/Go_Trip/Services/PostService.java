@@ -68,26 +68,27 @@ public class PostService {
 
 
     @Transactional
-public void deletePostsById(Long id) {
-     // Obtener el nombre de la imagen
-    String imgName = postRepository.getImgName(id);
-    if (imgName != null && !imgName.trim().isEmpty()) {
-        Path imagePath = Paths.get("src/main/resources/static/Img/Posts", imgName);
-        File file = new File(imagePath.toString());
-        file.delete(); // Elimina el archivo si existe
+    public void deletePostsById(Long id) {
+        // Primero obtenemos el post para tener la URL de la imagen
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post no encontrado"));
+        
+        // Eliminamos la imagen de Cloudinary
+        if (post.getImg() != null && !post.getImg().isEmpty()) {
+            try {
+                cloudinaryService.deleteImage(post.getImg());
+            } catch (IOException e) {
+                // Puedes loggear el error pero no interrumpir la eliminación
+                System.err.println("Error al eliminar imagen de Cloudinary: " + e.getMessage());
+            }
+        }
+        
+        // Finalmente eliminamos el post de la base de datos
+        postRepository.deleteById(id);
     }
-    postRepository.deleteById(id); 
-} 
 
     public List<Post> getRandomPosts() {
         return postRepository.getRandomPosts();
     }
-    //TODO: addPost()
-    //TODO: updatePost(id)
-    //TODO: deletePost(id)
-
-    //TODO: getImgName(id)
-
-    
 
 }

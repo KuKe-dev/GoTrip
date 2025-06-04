@@ -101,8 +101,24 @@ public class UserService {
 
     @Transactional
     public void deleteUserById(Long id) {
+        // Primero obtenemos el usuario para tener la URL del avatar
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        
+        // Eliminamos el avatar de Cloudinary
+        if (user.getAvatar() != null && !user.getAvatar().isEmpty()) {
+            try {
+                cloudinaryService.deleteImage(user.getAvatar());
+            } catch (IOException e) {
+                System.err.println("Error al eliminar avatar de Cloudinary: " + e.getMessage());
+            }
+        }    
+        
+        // Eliminamos los posts del usuario
         userRepository.deleteUserPosts(id);
-        userRepository.deleteUser(id);
+        
+        // Finalmente eliminamos el usuario
+        userRepository.deleteById(id);
     }
 
 }
