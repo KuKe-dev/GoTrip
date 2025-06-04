@@ -1,11 +1,17 @@
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk-alpine AS builder
 WORKDIR /app
-# Separar la copia de archivos que cambian poco (pom.xml) de los que cambian mucho (src)
-COPY pom.xml .
-COPY .mvn/ .mvn
-COPY mvnw .
-RUN ./mvnw dependency:go-offline -B
+COPY . .
 
-# Luego copiar el código fuente
+RUN ./mvnw clean package -DskipTests
+
 COPY src ./src
-CMD ["./mvnw", "spring-boot:run"]
+
+FROM eclipse-temurin:21-jre-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
