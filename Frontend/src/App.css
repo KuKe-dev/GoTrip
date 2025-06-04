@@ -9,10 +9,14 @@
 
 .warning-responsive {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 80%;
+  height: auto;
   z-index: 9999;
   background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
@@ -21,7 +25,7 @@
   font-size: 14px;
   font-weight: 500;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   backdrop-filter: blur(10px);
   animation: slideDown 0.5s ease-out;
 }
@@ -60,7 +64,9 @@
 /* Hide on desktop screens */
 @media (max-width: 768px) {
   .warning-responsive {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .App {
     display: none;
