@@ -1,23 +1,8 @@
-# fly.toml app configuration file generated for gotrip-sv on 2025-06-05T18:42:53-03:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = 'gotrip-sv'
 primary_region = 'eze'
 
 [build]
-
-[env]
-CLIENT_URL = "http://localhost:5173"
-CLIENT_URL_DEV = "http://localhost:5173"
-CLOUDINARY_API_KEY = "284513334981355"
-CLOUDINARY_API_SECRET = "XzfIXsrFArok7yb8w43yU2UavYk"
-CLOUDINARY_CLOUD_NAME = "dqowla9sc"
-SECRET_KEY = "Patito-de-la-mama-pata-y-el-papa-pato"
-SPRING_DATASOURCE_PASSWORD = "4Rh8EfI0yTcbrEoaHe3Xq4IhjCMurrzV"
-SPRING_DATASOURCE_URL = "jdbc:postgresql://dpg-d0v0l5vdiees73cccb1g-a.virginia-postgres.render.com:5432/gotrip_db"
-SPRING_DATASOURCE_USERNAME = "kuke"
+  dockerfile = 'Dockerfile'
 
 [http_service]
   internal_port = 8080
