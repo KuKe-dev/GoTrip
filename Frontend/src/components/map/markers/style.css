@@ -39,9 +39,9 @@
 }
 
 .leaflet-popup-close-button:hover {
-  background: rgba(239, 68, 68, 0.1) ;
+  background: rgba(239, 68, 68, 0.217) ;
   color: #ef4444 ;
-  transform: scale(1.1) ;
+
 }
 
 /* Contenido principal del popup */

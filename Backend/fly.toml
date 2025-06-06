@@ -13,4 +13,15 @@ primary_region = 'eze'
   processes = ['app']
 
 [[vm]]
+  memory = "512mb"
   size = 'shared-cpu-1x'
+
+[env]
+  # Critical JVM memory settings
+  JAVA_OPTS = "-Xmx256m -Xss512k -XX:MaxRAM=512m -XX:+UseSerialGC -XX:+HeapDumpOnOutOfMemoryError"
+  
+  # Ensure Spring knows it's in production
+  SPRING_PROFILES_ACTIVE = "prod"
+
+[deploy]
+  min_machines = 1
