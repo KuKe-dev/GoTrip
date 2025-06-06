@@ -1,16 +1,21 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LoginForm from '../components/forms/LoginForm.jsx'
 import Logo from '../components/forms/Logo.jsx'
 import './LoginPage.css';
 import { getCookie, checkIsLogged } from '../scripts/logged';
+import LoadingScreen from '../components/loadingScreen/LoadingScreen.jsx';
 
 const LoginPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-          checkIsLogged().then(res => res.json())
-  
+          checkIsLogged().then(res => res.json()).then(setIsLoading(false));
       } , [])
+
+  if (isLoading) {
+    return <LoadingScreen message="Cargando..." />;
+  }
 
   return (
     <div className="login-container">

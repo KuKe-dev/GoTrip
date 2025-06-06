@@ -6,6 +6,7 @@ import Topbar from "../components/topbar/Topbar";
 import { FaRedo } from "react-icons/fa";
 
 import './Explore.css'
+import LoadingScreen from "../components/loadingScreen/LoadingScreen.jsx";
 
 export default function Explore() {
     const [randomPosts, setRandomPosts] = useState([]);
@@ -43,7 +44,7 @@ export default function Explore() {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <LoadingScreen message="Cargando..." />;
     }
 
     return (

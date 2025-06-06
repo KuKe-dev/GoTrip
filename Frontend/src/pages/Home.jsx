@@ -5,6 +5,7 @@ import Topbar from "../components/topbar/Topbar";
 import Map from "../components/map/map.jsx"
 import "./Home.css";
 import { getCookie, checkIsLogged } from "../scripts/logged";
+import LoadingScreen from "../components/loadingScreen/LoadingScreen.jsx";
 
 export default function Home() {
 
@@ -24,7 +25,7 @@ export default function Home() {
     console.log("Cookies después de establecerse:", getCookie("a")); // ✅ Ahora sí aparece
 
     if (isLoading) {
-        return <div></div>;
+        return <LoadingScreen message="Cargando..." />;
     }
 
   return (

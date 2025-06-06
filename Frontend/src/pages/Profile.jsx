@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar/Sidebar.jsx";
 import "./Profile.css";
 import FriendButton from "../components/friendButton/FriendButton.jsx";
 import Swal from 'sweetalert2';
+import LoadingScreen from "../components/loadingScreen/LoadingScreen.jsx";
 
 export default function Profile() {
     const { username } = useParams(); // Obtener username de la URL
@@ -143,7 +144,7 @@ export default function Profile() {
             <>
                 <Sidebar/>
                 <main className="content-w-navbar">
-                    <h1 className="loading">Loading profile data...</h1>
+                    <LoadingScreen message="Cargando..." />
                 </main>
             </>
         );

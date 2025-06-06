@@ -4,8 +4,10 @@ import { getCookie, checkIsLogged } from "../scripts/logged.js";
 import './CreatePost.css';
 import Map from "../components/map/map.jsx";
 import { FaImage } from "react-icons/fa";
+import LoadingScreen from "../components/loadingScreen/LoadingScreen.jsx";
 
 export default function CreatePost() {
+    const [isLoading, setIsLoading] = useState(true);
     const [isLogged, setIsLogged] = useState(null);
     const [userId, setUserId] = useState(null);
     const [preview, setPreview] = useState(null);
@@ -73,10 +75,14 @@ export default function CreatePost() {
             .then(res => res.json())
             .then(login => {
 
-                    setUserId(login.id); setTimeout(() => setIsLogged(login.res), 200)
+                    setUserId(login.id);setIsLogged(login.res);setIsLoading(false);
 
             })
     }, []);
+
+    if (isLoading) {
+        return <LoadingScreen message="Cargando..." />;
+    }
 
     return (
         <div className="create-post-page" style={{overflow: "hidden"}}>
