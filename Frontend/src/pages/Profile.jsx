@@ -141,12 +141,7 @@ export default function Profile() {
 
     if (loading) {
         return (
-            <>
-                <Sidebar/>
-                <main className="content-w-navbar">
-                    <LoadingScreen message="Cargando..." />
-                </main>
-            </>
+            <LoadingScreen message="Cargando..." />
         );
     }
 
