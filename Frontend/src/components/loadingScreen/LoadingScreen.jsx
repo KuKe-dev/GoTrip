@@ -22,7 +22,7 @@ return (
         </div>
         
         {/* Spinner animado */}
-        <div className="loading-spinner">
+        <div className="loading-spinner-loadingScreen">
           <div className="spinner-ring"></div>
         </div>
         
