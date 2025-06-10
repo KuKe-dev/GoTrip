@@ -6,6 +6,7 @@ import Map from "../components/map/map.jsx"
 import "./Home.css";
 import { getCookie, checkIsLogged } from "../scripts/logged";
 import LoadingScreen from "../components/loadingScreen/LoadingScreen.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 
 export default function Home() {
 

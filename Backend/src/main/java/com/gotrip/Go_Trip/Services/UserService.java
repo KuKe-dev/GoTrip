@@ -32,10 +32,14 @@ public class UserService {
     private final CloudinaryService cloudinaryService;
     private final PostRepository postRepository;
 
-    /* public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    } */
+    public UserService(UserRepository userRepository, 
+                    PasswordEncoder passwordEncoder,
+                    PostRepository postRepository) {
+    this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
+    this.cloudinaryService = new CloudinaryService();
+    this.postRepository = postRepository;
+    }
 
     public User registerUser(String username, String email, String password, 
         MultipartFile avatar, String bio) throws IOException {
