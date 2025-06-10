@@ -64,7 +64,7 @@ export default function Config() {
           <div className="privacy-option">
             <label>¿Quién puede ver tu perfil?</label>
             <select>
-              <option>Público</option>
+              <option>Públicoo</option>
               <option>Solo amigos</option>
               <option>Privado</option>
             </select>
