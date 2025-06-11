@@ -99,6 +99,20 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/auth/logout")
+    public ResponseEntity<?> logout() {
+        ResponseCookie cookie = ResponseCookie.from("isLogged", null)
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("None")
+                .build();
+        return ResponseEntity.ok()
+                .header("Set-Cookie", cookie.toString())
+                .body("¡Adios viajer@!");
+    }
     
     @PostMapping("/auth/isLogged")
     public ResponseEntity<?> isLogged(HttpServletRequest request) {  // Cambiado a HttpServletRequest para acceder a las cookies
