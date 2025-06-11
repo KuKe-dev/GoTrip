@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import Topbar from "../components/topbar/Topbar";
 import Map from "../components/map/map.jsx"
 import "./Home.css";
-import { getCookie, checkIsLogged } from "../scripts/logged";
+import { checkIsLogged } from "../scripts/logged";
 import LoadingScreen from "../components/loadingScreen/LoadingScreen.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -22,8 +22,6 @@ export default function Home() {
             })
 
     } , [])
-
-    console.log("Cookies después de establecerse:", getCookie("a")); // ✅ Ahora sí aparece
 
     if (isLoading) {
         return <LoadingScreen message="Cargando..." />;

@@ -4,8 +4,14 @@ export function getCookie(name) {
     
 }
 
-export function deleteCookie(name) {
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+export function deleteCookie() {
+    fetch(import.meta.env.VITE_BACKEND_URL + '/api/auth/logout', {
+        method: 'GET',
+        credentials: 'include', // Importante para enviar cookies HttpOnly
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 }
 
 export async function checkIsLogged() {

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getCookie, checkIsLogged } from '../scripts/logged';

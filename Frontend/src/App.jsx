@@ -10,7 +10,6 @@ import RegisterPage from './pages/RegisterPage.jsx';
 import Profile from './pages/Profile.jsx';
 import CreatePost from './pages/CreatePost.jsx';
 import Explore from './pages/Explore.jsx';
-import LoadingScreen from "./components/loadingScreen/LoadingScreen.jsx";
 // import Config from './pages/Config.jsx';
 
 function App() {

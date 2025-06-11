@@ -2,11 +2,10 @@
 // src/components/sidebar/Sidebar.jsx
 import { FaUser, FaPlusCircle, FaMapMarkedAlt, FaSignOutAlt, FaQuestion, FaSignInAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { deleteCookie } from "../../scripts/logged";
 import "./Sidebar.css";
 import logo from "../../assets/logo-gotrip.png";
 import { useEffect, useState } from "react";
-import { getCookie, checkIsLogged } from "../../scripts/logged";
+import { getCookie, checkIsLogged, deleteCookie } from "../../scripts/logged";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Sidebar = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLogout = () => {
-    deleteCookie("isLogged"); // Vacía datos del usuario
+    deleteCookie(); // Vacía datos del usuario
     navigate("/login");   // Redirige al login
   };
 
